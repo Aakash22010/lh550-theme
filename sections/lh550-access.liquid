@@ -151,7 +151,7 @@ Request a Call Back{%- endcapture -%}
 
       var active = parseInt(root.getAttribute('data-start'), 10) || 0;
       var dir = active >= count - 1 ? -1 : 1;
-      var timer = null, hovering = false, visible = true;
+      var timer = null, visible = true;
 
       function show(i) {
         active = i;
@@ -178,7 +178,7 @@ Request a Call Back{%- endcapture -%}
       }
       function start() {
         stop();
-        if (reduce || hovering || !visible || document.hidden) return;
+        if (reduce || !visible || document.hidden) return;
         timer = setInterval(tick, STEP_MS);
       }
       function pick(i) {
@@ -195,11 +195,6 @@ Request a Call Back{%- endcapture -%}
         (function (k) { cards[k].addEventListener('click', function () { pick(k); }); })(c);
       }
 
-      /* Pause while the mouse is over the band or focus is inside it */
-      root.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { hovering = true; stop(); } });
-      root.addEventListener('pointerleave', function () { hovering = false; start(); });
-      root.addEventListener('focusin', function () { hovering = true; stop(); });
-      root.addEventListener('focusout', function () { hovering = false; start(); });
       document.addEventListener('visibilitychange', start);
 
       /* Only auto-advance while the band is on screen */

@@ -48,7 +48,6 @@
   height: 100%;
   max-height: calc(30.4 * var(--lh-u));
   object-fit: contain;
-  transition: transform 0.5s var(--lh-ease);
 }
 
 .lh-extensions .lh-extensions__name {
@@ -123,9 +122,6 @@
   .lh-extensions .lh-extensions__btn:hover::after {
     opacity: 1;
     transform: translateX(0);
-  }
-  .lh-extensions .lh-extensions__card:hover .lh-extensions__img {
-    transform: scale(1.05);
   }
 }
 
