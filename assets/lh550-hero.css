@@ -61,6 +61,66 @@
 }
 .lh-hero .lh-hero__btn s { font-size: 0.75em; font-weight: 400; opacity: 0.75; }
 
+/* Buy Now: custom center-to-edges white hover animation */
+.lh-hero .lh-hero__btn.lh-btn--primary {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border: calc(0.2 * var(--lh-u)) solid var(--lh-blue);
+  background: var(--lh-blue);
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.lh-hero .lh-hero__btn.lh-btn--primary > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Semicircular white end caps that slide from center to edges */
+.lh-hero .lh-hero__btn.lh-btn--primary::before,
+.lh-hero .lh-hero__btn.lh-btn--primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: calc(2.4 * var(--lh-u));
+  background: #fff;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.35s ease;
+}
+
+/* Left cap starts from near center (offset to the right) */
+.lh-hero .lh-hero__btn.lh-btn--primary::before {
+  left: 0;
+  border-top-left-radius: 9999px;
+  border-bottom-left-radius: 9999px;
+  transform: translateX(calc(11 * var(--lh-u)));
+}
+
+/* Right cap starts from near center (offset to the left) */
+.lh-hero .lh-hero__btn.lh-btn--primary::after {
+  right: 0;
+  border-top-right-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+  transform: translateX(calc(-11 * var(--lh-u)));
+}
+
+@media (hover: hover) {
+  .lh-hero .lh-hero__btn.lh-btn--primary:hover {
+    background: var(--lh-blue);
+    box-shadow: none;
+    transform: none;
+  }
+  .lh-hero .lh-hero__btn.lh-btn--primary:hover::before,
+  .lh-hero .lh-hero__btn.lh-btn--primary:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* Add to Cart: blue text, no border */
 .lh-hero .lh-hero__btn.lh-btn--outline {
   color: #4a6fe3;            /* replace with the exact blue from Figma */

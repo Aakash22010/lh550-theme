@@ -83,8 +83,8 @@
           "settings": {
             "title": "LAVNA Smart Lift Controller",
             "fallback": "lh550-ext-lift-controller.png",
-            "button_label": "Shop Now",
-            "button_action": "buy"
+            "button_label": "Add to Cart",
+            "button_action": "add"
           }
         },
         "extension_5": {
@@ -92,8 +92,8 @@
           "settings": {
             "title": "LAVNA Digital Smart Gateway",
             "fallback": "lh550-ext-gateway.png",
-            "button_label": "Shop Now",
-            "button_action": "buy"
+            "button_label": "Add to Cart",
+            "button_action": "add"
           }
         }
       },
