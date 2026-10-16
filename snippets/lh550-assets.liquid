@@ -1,0 +1,11 @@
+{%- comment -%}
+  Shared lh550 assets: fonts, base CSS and the page script.
+  Rendered at the top of every lh550 section so each section works on its own, in any template or layout.
+  Repeating the tags is fine - the browser loads each file once and lh550.js guards against running twice.
+
+  Usage:
+  {% render 'lh550-assets' %}
+{%- endcomment -%}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500&family=Roboto:wght@400;500;600;700&display=swap">
+{{ 'lh550-base.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'lh550.js' | asset_url }}" defer></script>
