@@ -1,0 +1,130 @@
+{%- comment -%}
+  LH550 - Software features + "What more You can do"
+  Figma: "One Powerful Software / Countless Smart Features" band with the
+  devices image between the headings and a panel of 4 feature cards, then the
+  "What more You can do" sub-band with capability cards (one block per card).
+  Feature blocks render in the panel; capability blocks render in the sub-band.
+  Cards are static in the design - no hover.
+{%- endcomment -%}
+{% render 'lh550-assets' %}
+{{ 'lh550-software.css' | asset_url | stylesheet_tag }}
+
+<section class="lh lh-section lh-software" style="--pt:{{ section.settings.padding_top }};--ptm:{{ section.settings.padding_top_mobile }}">
+  <div class="lh-container lh-software__inner">
+    {% # Heading row - the devices image overlaps the headings and the top of the panel %}
+    <div class="lh-software__head">
+      <h2 class="lh-software__title lh-software__title--left">{{ section.settings.title_left | escape }}</h2>
+      <div class="lh-software__devices">
+        {%- if section.settings.devices_image != blank -%}
+          {%- render 'lh550-image', image: section.settings.devices_image, alt: section.settings.devices_alt, class: 'lh-software__devices-img', sizes: '(max-width: 899px) 85vw, 47vw' -%}
+        {%- else -%}
+          <picture>
+            <source media="(max-width: 899px)" srcset="{{ 'lh550-software-devices-mobile.png' | asset_url }}">
+            <img class="lh-software__devices-img" src="{{ 'lh550-software-devices.png' | asset_url }}" alt="{{ section.settings.devices_alt | escape }}" width="1302" height="708" loading="lazy">
+          </picture>
+        {%- endif -%}
+      </div>
+      <h2 class="lh-software__title lh-software__title--right">{{ section.settings.title_right | escape }}</h2>
+    </div>
+
+    {% # Feature cards %}
+    <div class="lh-panel lh-software__panel">
+      <ul class="lh-software__grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'feature' -%}
+            <li class="lh-software__card" {{ block.shopify_attributes }}>
+              <h3 class="lh-software__card-title">{{ block.settings.title | escape }}</h3>
+              <p class="lh-software__card-text">{{ block.settings.text | escape }}</p>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+
+    {% # "What more You can do" sub-band %}
+    <div class="lh-software__more">
+      <h2 class="lh-software__more-title">{{ section.settings.more_title | escape }}</h2>
+      <ul class="lh-software__more-grid lh-scroller" data-lh-track>
+        {%- assign cap_i = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'capability' -%}
+            {%- assign cap_i = cap_i | plus: 1 -%}
+            {%- case cap_i -%}
+              {%- when 1 -%}{%- assign cap_img = 'lh550-software-more-1.png' -%}
+              {%- when 2 -%}{%- assign cap_img = 'lh550-software-more-2.png' -%}
+              {%- when 3 -%}{%- assign cap_img = 'lh550-software-more-3.png' -%}
+              {%- when 4 -%}{%- assign cap_img = 'lh550-software-more-4.png' -%}
+              {%- when 5 -%}{%- assign cap_img = 'lh550-software-more-5.png' -%}
+              {%- when 6 -%}{%- assign cap_img = 'lh550-software-more-6.png' -%}
+              {%- when 7 -%}{%- assign cap_img = 'lh550-software-more-7.png' -%}
+              {%- when 8 -%}{%- assign cap_img = 'lh550-software-more-8.png' -%}
+              {%- when 9 -%}{%- assign cap_img = 'lh550-software-more-9.png' -%}
+              {%- else -%}{%- assign cap_img = '' -%}
+            {%- endcase -%}
+            <li class="lh-software__more-card" {{ block.shopify_attributes }}>
+              {%- if cap_img != '' -%}
+                <img class="lh-software__more-img" src="{{ cap_img | asset_url }}" alt="" width="1268" height="840" loading="lazy">
+              {%- endif -%}
+              <p class="lh-software__more-text">{{ block.settings.text | escape }}</p>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "LH550 software",
+  "tag": "div",
+  "class": "lh550-software-section",
+  "settings": [
+    { "type": "text", "id": "title_left", "label": "Heading (left)", "default": "One Powerful Software" },
+    { "type": "text", "id": "title_right", "label": "Heading (right)", "default": "Countless Smart Features" },
+    { "type": "image_picker", "id": "devices_image", "label": "Devices image", "info": "Leave empty for the design's laptop, phone, cards and encoder composite." },
+    { "type": "text", "id": "devices_alt", "label": "Devices image alt text", "default": "LAVNA hotel software on a laptop and phone with RFID cards and the encoder" },
+    { "type": "text", "id": "more_title", "label": "\"What more\" heading", "default": "What More You Can Do" },
+    { "type": "range", "id": "padding_top", "label": "Top spacing (desktop)", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 22 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Top spacing (mobile)", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 22 }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Feature" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Describe the feature" }
+      ]
+    },
+    {
+      "type": "capability",
+      "name": "Capability",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Describe what more you can do" }
+      ]
+    }
+  ],
+  "max_blocks": 16,
+  "presets": [
+    {
+      "name": "LH550 software",
+      "blocks": [
+        { "type": "feature", "settings": { "title": "Alarm Trigger", "text": "If a door isn’t Completely locked, an alarm will activate after 60 seconds" } },
+        { "type": "feature", "settings": { "title": "Past Electricity Records", "text": "Install our lock to enable access to detailed historical electricity usage data directly through our software." } },
+        { "type": "feature", "settings": { "title": "Past Unlocking Records", "text": "Check past unlocking records of the lock and manage efficiently" } },
+        { "type": "feature", "settings": { "title": "Mobile App Tracking", "text": "Connect and control access from your mobile using our app" } },
+        { "type": "capability", "settings": { "text": "Check room status, vacant or occupied" } },
+        { "type": "capability", "settings": { "text": "Check room service status" } },
+        { "type": "capability", "settings": { "text": "Check customer checkout timings" } },
+        { "type": "capability", "settings": { "text": "Check low battery status in the software" } },
+        { "type": "capability", "settings": { "text": "Provide mobile app access to staff and guests" } },
+        { "type": "capability", "settings": { "text": "Guests can check the details about the stay" } },
+        { "type": "capability", "settings": { "text": "Guests can unlock with their mobile app" } },
+        { "type": "capability", "settings": { "text": "Generate multiple cards like guest cards, manager card, housekeeping cards" } },
+        { "type": "capability", "settings": { "text": "Check past Week Occupancy records & Room unlocking records" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
