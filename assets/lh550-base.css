@@ -54,6 +54,11 @@ body.lh-body {
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
+@media (max-width: 899px) {
+  body.lh-body {
+    padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px));
+  }
+}
 
 /* Host theme isolation: each section root (.lh) sets its own base typography, and text elements revert whatever
    the host theme sets globally (h2 sizes, p line-height, letter-spacing...). Section rules have one more class,

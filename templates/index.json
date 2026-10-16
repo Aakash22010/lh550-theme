@@ -112,13 +112,17 @@
         "feature_1": {
           "type": "feature",
           "settings": {
-            "text": "A valid RFID or key card is inserted.\nPower consumption recorded in Software.\nBrief Power delay after card removal"
+            "title": "Energy Saver Pro",
+            "fallback": "lh550-esaver-pro.png",
+            "text": "A valid RFID or key card is inserted.\nPower consumption recorded in Software\nBrief Power delay after card removal."
           }
         },
         "feature_2": {
           "type": "feature",
           "settings": {
-            "text": "Any RFID Card can be inserted.\nSave Electricity when card not placed.\nInstant Power off after card removal"
+            "title": "Energy Saver Lite",
+            "fallback": "lh550-esaver-lite.png",
+            "text": "Any RFID Card can be inserted.\nSave Electricity when card not placed.\nInstant Power off after card removal."
           }
         },
         "shot_3": {

@@ -215,7 +215,70 @@
     font-size: calc(1.15 * var(--mu));
   }
   .lh-hero .lh-hero__btn s { font-size: 0.9em; }
-  .lh-hero .lh-hero__btn.lh-btn--outline { display: none; }  /* delete this line to show Add to Cart on mobile */
+  .lh-hero .lh-hero__btn.lh-btn--outline { display: none; }  /* In-banner Add to Cart hidden on mobile */
+
+  /* Sticky Add to Cart bottom bar on mobile */
+  .lh-hero .lh-hero__sticky-bar {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    background: #fff;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+    padding: 10px 16px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 10px));
+  }
+
+  .lh-hero .lh-hero__sticky-inner {
+    padding: 0;
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .lh-hero .lh-hero__sticky-inner .lh-buy {
+    width: 100%;
+    margin: 0;
+    display: block;
+  }
+
+  .lh-hero .lh-hero__sticky-btn {
+    width: 100%;
+    min-width: 100%;
+    box-sizing: border-box;
+    min-height: 48px;
+    height: 48px;
+    border-radius: 9999px;
+    border: 1.5px solid var(--lh-blue);
+    background: #fff;
+    color: var(--lh-blue);
+    font: 600 16px/1 var(--lh-font);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0 20px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .lh-hero .lh-hero__sticky-btn span {
+    color: inherit;
+    font: inherit;
+  }
+
+  .lh-hero .lh-hero__sticky-btn:active {
+    background: rgba(77, 119, 234, 0.08);
+  }
+}
+
+/* Sticky bar hidden on desktop */
+@media (min-width: 900px) {
+  .lh-hero .lh-hero__sticky-bar {
+    display: none !important;
+  }
 }
 
 /* Tablet (600-899px): same design in a wider 8:5 banner. The copy is scaled

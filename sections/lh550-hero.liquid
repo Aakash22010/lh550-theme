@@ -56,6 +56,17 @@
       </div>
     </div>
   </div>
+
+  <div class="lh-hero__sticky-bar" aria-label="Quick Add to Cart">
+    <div class="lh-container lh-hero__sticky-inner">
+      {%- if section.settings.product != blank -%}
+        {%- capture add_html -%}<span>Add to Cart</span>{%- endcapture -%}
+        {% render 'lh550-buy-button', product: section.settings.product, action: 'add', class: 'lh-btn lh-btn--outline lh-hero__sticky-btn', content: add_html %}
+      {%- else -%}
+        <a class="lh-btn lh-btn--outline lh-hero__sticky-btn" href="{{ section.settings.button_link | default: '/collections/all' }}"><span>Add to Cart</span></a>
+      {%- endif -%}
+    </div>
+  </div>
 </section>
 
 {% schema %}
