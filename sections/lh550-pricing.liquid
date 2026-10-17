@@ -57,10 +57,10 @@
               assign prefix = section.settings.price_prefix | escape
               assign price_text = prefix | append: price_text
               assign compare_text = prefix | append: compare_text
-              # discount % = (compare-at - price) / compare-at, rounded down
+              # discount % = (compare-at - price) / compare-at, rounded to the nearest whole % (as on lavnalocks.com)
               assign discount_text = ''
               if v.compare_at_price > v.price
-                assign pct = v.compare_at_price | minus: v.price | times: 100 | divided_by: v.compare_at_price
+                assign pct = v.compare_at_price | minus: v.price | times: 100.0 | divided_by: v.compare_at_price | round
                 assign discount_text = '-' | append: pct | append: '%'
               else
                 assign compare_text = ''
@@ -228,9 +228,9 @@
       "name": "LH550 pricing",
       "blocks": [
         { "type": "product", "settings": { "name": "LH400", "fallback": "lh550-price-lh400.png", "discount": "-53%", "price": "Rs. 3,990.00", "compare_price": "Rs. 8,500.00", "rating": 4.5, "button_label": "Add to Cart" } },
-        { "type": "product", "settings": { "name": "LH500", "fallback": "lh550-price-lh500.png", "discount": "-53%", "price": "Rs. 5,185.00", "compare_price": "Rs. 12,990.00", "rating": 4.5, "button_label": "Add to Cart" } },
-        { "type": "product", "settings": { "name": "LH510", "fallback": "lh550-price-lh510.png", "discount": "-65%", "price": "Rs. 5,200.00", "compare_price": "Rs. 14,990.00", "rating": 4.5, "button_label": "Add to Cart" } },
-        { "type": "product", "settings": { "name": "LH550", "fallback": "lh550-price-lh550.png", "discount": "-63%", "price": "Rs. 5,450.00", "compare_price": "Rs. 14,990.00", "rating": 4.5, "button_label": "Add to Cart" } },
+        { "type": "product", "settings": { "name": "LH500", "fallback": "lh550-price-lh500.png", "discount": "-60%", "price": "Rs. 5,185.00", "compare_price": "Rs. 12,990.00", "rating": 4.5, "button_label": "Add to Cart" } },
+        { "type": "product", "settings": { "name": "LH510", "fallback": "lh550-price-lh510.png", "discount": "-60%", "price": "Rs. 5,200.00", "compare_price": "Rs. 12,990.00", "rating": 4.5, "button_label": "Add to Cart" } },
+        { "type": "product", "settings": { "name": "LH550", "fallback": "lh550-price-lh550.png", "discount": "-58%", "price": "Rs. 5,450.00", "compare_price": "Rs. 12,990.00", "rating": 4.5, "button_label": "Add to Cart" } },
         { "type": "feature", "settings": { "label": "Color", "value_1": "Black", "value_2": "Matte Silver", "value_3": "Gold Black", "value_4": "Black Gold" } },
         { "type": "feature", "settings": { "label": "Manual Key", "label_mobile": "Manual \nKey", "value_1": "Yes, 2 Mechanical Keys", "value_1_mobile": "Yes, 2 Manual Keys", "value_2": "Yes, 2 Mechanical Keys", "value_2_mobile": "Yes, 2 Manual Keys", "value_3": "Yes, 2 Mechanical Keys", "value_3_mobile": "Yes, 2 Manual Keys", "value_4": "Yes, 2 Mechanical Keys", "value_4_mobile": "Yes, 2 Manual Keys" } },
         { "type": "feature", "settings": { "label": "RFID Card", "label_mobile": "RFID \nCard", "value_1": "Yes, 2 Cards", "value_2": "Yes, 2 Cards", "value_3": "Yes, 2 Cards", "value_4": "Yes, 2 Cards" } },

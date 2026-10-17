@@ -340,7 +340,7 @@
           "settings": {
             "name": "LH500",
             "fallback": "lh550-price-lh500.png",
-            "discount": "-53%",
+            "discount": "-60%",
             "price": "Rs. 5,185.00",
             "compare_price": "Rs. 12,990.00",
             "rating": 4.5,
@@ -353,9 +353,9 @@
           "settings": {
             "name": "LH510",
             "fallback": "lh550-price-lh510.png",
-            "discount": "-65%",
+            "discount": "-60%",
             "price": "Rs. 5,200.00",
-            "compare_price": "Rs. 14,990.00",
+            "compare_price": "Rs. 12,990.00",
             "rating": 4.5,
             "button_label": "Add to Cart",
             "product": "lh510-hotel-smart-lock"
@@ -366,9 +366,9 @@
           "settings": {
             "label": "Color",
             "value_1": "Black",
-            "value_2": "Matte Silver",
-            "value_3": "Gold Black",
-            "value_4": "Black Gold"
+            "value_2": "Matte Satin",
+            "value_3": "Rose Gold",
+            "value_4": "Gold"
           }
         },
         "feature_5": {
@@ -414,9 +414,9 @@
             "label": "Door Thickness",
             "label_mobile": "Door \nThickness",
             "value_1": "30 - 65mm",
-            "value_2": "30 - 65mm",
-            "value_3": "30 - 65mm",
-            "value_4": "30 - 65mm"
+            "value_2": "35 - 65mm",
+            "value_3": "35 - 65mm",
+            "value_4": "35 - 65mm"
           }
         },
         "feature_9": {
@@ -424,12 +424,12 @@
           "settings": {
             "label": "Security Alert",
             "label_mobile": "Alert",
-            "value_1": "Room not Locked feature",
-            "value_1_mobile": "Room not Locked",
+            "value_1": "Room Locked feature(Not Available)",
+            "value_1_mobile": "Room Locked (Not Available)",
             "value_2": "Room Locked feature",
             "value_2_mobile": "Room Locked",
-            "value_3": "Room not Locked feature",
-            "value_3_mobile": "Room not Locked",
+            "value_3": "Room Locked feature",
+            "value_3_mobile": "Room Locked",
             "value_4": "Room Locked feature",
             "value_4_mobile": "Room Locked"
           }
@@ -447,7 +447,7 @@
         "feature_11": {
           "type": "feature",
           "settings": {
-            "label": "Material used",
+            "label": "Material Used",
             "value_1": "Zinc alloy, ABS and Stainless steel",
             "value_2": "Zinc alloy, ABS and Stainless steel",
             "value_3": "Zinc alloy, ABS and Stainless steel",
@@ -459,9 +459,9 @@
           "settings": {
             "name": "LH550",
             "fallback": "lh550-price-lh550.png",
-            "discount": "-63%",
+            "discount": "-58%",
             "price": "Rs. 5,450.00",
-            "compare_price": "Rs. 14,990.00",
+            "compare_price": "Rs. 12,990.00",
             "rating": 4.5,
             "button_label": "Add to Cart",
             "product": "lh550-hotel-smart-lock"
