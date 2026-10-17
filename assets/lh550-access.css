@@ -280,3 +280,7 @@
 @media (min-width: 600px) and (max-width: 899px) {
   .lh-access .lh-access__band--options{ --mu-div: 47; }
 }
+
+/* Mouse-wheel steps (desktop, set by the section script) animate faster than the 4s auto-advance
+   so the ring keeps up with the wheel; the next auto step goes back to --dur 4s */
+.lh-access .lh-access__band--options.is-quick{ --dur: 1s; }
