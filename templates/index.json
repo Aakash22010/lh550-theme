@@ -600,31 +600,39 @@
       ]
     },
     "energy-pricing": {
-      "type": "lh550-energy-pricing",
-      "settings": {},
+      "type": "lh550-pricing",
+      "settings": {
+        "heading": "Energy Saver’s Price & Details",
+        "heading_mobile": "Energy Saver Price & Details",
+        "button_full": true,
+        "padding_top": 78,
+        "padding_top_mobile": 48
+      },
       "blocks": {
         "product_1": {
           "type": "product",
           "settings": {
             "name": "Energy Saver Lite",
-            "fallback": "lh550-esaver-lite.png",
+            "fallback": "lh550-esaver-lite-photo.png",
             "discount": "-53%",
-            "price": "Rs.999.00",
-            "compare_price": "Rs.8,500.00",
-            "rating": 0,
-            "button_label": "Add to Cart"
+            "price": "Rs. 999.00",
+            "compare_price": "Rs. 8,500.00",
+            "rating": 4.5,
+            "button_label": "Add to Cart",
+            "product": "energy-saver-lite"
           }
         },
         "product_2": {
           "type": "product",
           "settings": {
             "name": "Energy Saver Pro",
-            "fallback": "lh550-esaver-pro.png",
+            "fallback": "lh550-esaver-pro-photo.png",
             "discount": "-60%",
-            "price": "Rs.1,299.00",
-            "compare_price": "Rs.12,990.00",
-            "rating": 0,
-            "button_label": "Add to Cart"
+            "price": "Rs. 1,299.00",
+            "compare_price": "Rs. 12,990.00",
+            "rating": 4.5,
+            "button_label": "Add to Cart",
+            "product": "energy-saver-pro"
           }
         },
         "feature_3": {
@@ -632,8 +640,8 @@
           "settings": {
             "label": "Card Powered",
             "label_mobile": "Card\nPowered",
-            "value_1": "",
-            "value_2": ""
+            "value_1": "yes",
+            "value_2": "yes"
           }
         },
         "feature_4": {
@@ -641,15 +649,15 @@
           "settings": {
             "label": "Track Records",
             "label_mobile": "Track\nRecords",
-            "value_1": "",
-            "value_2": ""
+            "value_1": "no",
+            "value_2": "yes"
           }
         },
         "feature_5": {
           "type": "feature",
           "settings": {
-            "label": "Save's Energy",
-            "label_mobile": "Save's\nEnergy",
+            "label": "Save’ s Energy",
+            "label_mobile": "Save’ s\nEnergy",
             "value_1": "20%",
             "value_2": "25%"
           }
@@ -668,8 +676,8 @@
           "settings": {
             "label": "App Compatible",
             "label_mobile": "App\nCompatible",
-            "value_1": "",
-            "value_2": ""
+            "value_1": "no",
+            "value_2": "yes"
           }
         }
       },

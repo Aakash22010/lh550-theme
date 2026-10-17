@@ -13,7 +13,7 @@
 {%- assign products = section.blocks | where: 'type', 'product' -%}
 {%- assign features = section.blocks | where: 'type', 'feature' -%}
 {%- assign row_count = features.size | plus: 2 -%}
-<section class="lh lh-section lh-pricing" style="--pt:{{ section.settings.padding_top }};--ptm:{{ section.settings.padding_top_mobile }}">
+<section class="lh lh-section lh-pricing{% if section.settings.button_full %} lh-pricing--btn-full{% endif %}" style="--pt:{{ section.settings.padding_top }};--ptm:{{ section.settings.padding_top_mobile }}">
   <div class="lh-container">
     {% # Heading - optional shorter copy on mobile %}
     <h2 class="lh-pricing__heading">
@@ -139,8 +139,16 @@
                   assign vm = feature.settings.value_4_mobile
               endcase
             -%}
+            {%- assign v_key = v | strip | downcase -%}
             <div class="{{ row_class }} lh-pricing__value" style="grid-column:{{ forloop.index | plus: 1 }};grid-row:{{ row }}">
-              {%- if vm != blank -%}
+              {%- # "yes" / "no" render the design's green tick / red cross %}
+              {%- if v_key == 'yes' -%}
+                <svg class="lh-pricing__mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#3aa935"/><path d="M6.8 12.4l3.4 3.3 7-7.2" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span class="lh-visually-hidden">Yes</span>
+              {%- elsif v_key == 'no' -%}
+                <svg class="lh-pricing__mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#d4202a"/><path d="M8.2 8.2l7.6 7.6M15.8 8.2l-7.6 7.6" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
+                <span class="lh-visually-hidden">No</span>
+              {%- elsif vm != blank -%}
                 <span class="lh-pricing__d">{{ v | escape }}</span><span class="lh-pricing__m">{{ vm | escape | newline_to_br }}</span>
               {%- else -%}
                 {{ v | escape }}
@@ -166,6 +174,7 @@
     { "type": "image_picker", "id": "logo", "label": "Brand mark", "info": "Leave empty to use the LAVNA house mark." },
     { "type": "text", "id": "features_title", "label": "Features title", "default": "FEATURES" },
     { "type": "text", "id": "price_prefix", "label": "Price prefix", "default": "Rs. ", "info": "Shown before live product prices, e.g. Rs. 3,990.00" },
+    { "type": "checkbox", "id": "button_full", "label": "Full-width Add to Cart buttons", "default": false },
     { "type": "range", "id": "padding_top", "label": "Space above (desktop, px)", "min": 0, "max": 200, "step": 2, "default": 78 },
     { "type": "range", "id": "padding_top_mobile", "label": "Space above (mobile, px)", "min": 0, "max": 120, "step": 2, "default": 48 }
   ],
@@ -203,7 +212,7 @@
       "settings": [
         { "type": "text", "id": "label", "label": "Feature", "default": "Feature" },
         { "type": "textarea", "id": "label_mobile", "label": "Feature on mobile (optional)" },
-        { "type": "text", "id": "value_1", "label": "Product 1 value", "default": "-" },
+        { "type": "text", "id": "value_1", "label": "Product 1 value", "default": "-", "info": "Type yes or no to show a tick or a cross. Same for the values below." },
         { "type": "textarea", "id": "value_1_mobile", "label": "Product 1 value on mobile (optional)" },
         { "type": "text", "id": "value_2", "label": "Product 2 value", "default": "-" },
         { "type": "textarea", "id": "value_2_mobile", "label": "Product 2 value on mobile (optional)" },
