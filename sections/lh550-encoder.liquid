@@ -49,7 +49,7 @@
         <figure class="lh-encoder__thumb">
           {%- render 'lh550-image', image: s.encoder_image, fallback: 'lh550-enc-encoder.png', alt: s.encoder_alt, class: 'lh-encoder__thumb-img', sizes: '196px', width: 575, height: 685 -%}
         </figure>
-        <ul class="lh-encoder__grid">
+        <ul class="lh-encoder__grid" data-lh-marquee>
           {%- for block in section.blocks -%}
             {%- if block.type == 'feature' and block.settings.group == 'encoder' -%}
               <li class="lh-encoder__card" {{ block.shopify_attributes }}>
@@ -74,7 +74,7 @@
         <figure class="lh-encoder__thumb">
           {%- render 'lh550-image', image: s.saver_image, fallback: 'lh550-enc-saver.png', alt: s.saver_alt, class: 'lh-encoder__thumb-img', sizes: '196px', width: 4096, height: 2732 -%}
         </figure>
-        <ul class="lh-encoder__grid">
+        <ul class="lh-encoder__grid" data-lh-marquee>
           {%- for block in section.blocks -%}
             {%- if block.type == 'feature' and block.settings.group == 'saver' -%}
               <li class="lh-encoder__card" {{ block.shopify_attributes }}>
@@ -89,6 +89,59 @@
 
   </div>
 </section>
+
+<script>
+  // Desktop: the feature rows run as an endless marquee like lavnalocks.com (no pause on hover). The cards are cloned
+  // so the loop is seamless; mobile, reduced motion and no-JS keep the static list from the CSS.
+  (function () {
+    var desktop = window.matchMedia('(min-width: 900px)');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var SPEED = 68; // px per second, same pace as the live site
+
+    function setup(list) {
+      if (list.hasAttribute('data-lh-marquee-ready')) return;
+      list.setAttribute('data-lh-marquee-ready', '');
+      var originals = Array.prototype.slice.call(list.children);
+      var timer = null;
+
+      function clear() {
+        list.classList.remove('is-marquee');
+        Array.prototype.forEach.call(list.querySelectorAll('[data-lh-clone]'), function (c) { c.remove(); });
+      }
+      function build() {
+        clear();
+        if (!desktop.matches || reduce.matches || !originals.length) return;
+        var gap = parseFloat(getComputedStyle(list).columnGap) || 0;
+        var shift = originals.length * (originals[0].getBoundingClientRect().width + gap);
+        if (!shift) return;
+        // enough copies to keep the row full while the first set slides out
+        var copies = Math.max(1, Math.ceil(list.clientWidth / shift));
+        for (var k = 0; k < copies; k++) {
+          originals.forEach(function (li) {
+            var c = li.cloneNode(true);
+            c.setAttribute('data-lh-clone', '');
+            c.setAttribute('aria-hidden', 'true');
+            Array.prototype.slice.call(c.attributes).forEach(function (a) { if (a.name.indexOf('data-shopify') === 0) c.removeAttribute(a.name); });
+            list.appendChild(c);
+          });
+        }
+        list.style.setProperty('--marquee-shift', shift + 'px');
+        list.style.setProperty('--marquee-dur', (shift / SPEED).toFixed(2) + 's');
+        list.scrollLeft = 0;
+        list.classList.add('is-marquee');
+      }
+      function queue() { clearTimeout(timer); timer = setTimeout(build, 200); }
+
+      window.addEventListener('resize', queue);
+      if (desktop.addEventListener) { desktop.addEventListener('change', build); reduce.addEventListener('change', build); }
+      build();
+    }
+
+    function init() { Array.prototype.forEach.call(document.querySelectorAll('[data-lh-marquee]'), setup); }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+    document.addEventListener('shopify:section:load', init);
+  })();
+</script>
 
 {% schema %}
 {

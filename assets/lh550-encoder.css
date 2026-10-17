@@ -61,6 +61,10 @@
   mask-image: linear-gradient(to right, transparent 0, #000 calc(3.6 * var(--lh-u)));
 }
 .lh-encoder .lh-encoder__grid::-webkit-scrollbar{ display: none; }
+/* Desktop marquee (section script clones the cards and sets the shift / duration) */
+@keyframes lh-encoder-marquee{ to{ transform: translateX(calc(-1 * var(--marquee-shift, 0px))); } }
+.lh-encoder .lh-encoder__grid.is-marquee{ overflow: hidden; }
+.lh-encoder .lh-encoder__grid.is-marquee > .lh-encoder__card{ animation: lh-encoder-marquee var(--marquee-dur, 30s) linear infinite; }
 
 /* Feature card - light panel tint over white, title over text, centred vertically */
 .lh-encoder .lh-encoder__card{

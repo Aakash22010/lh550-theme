@@ -210,6 +210,7 @@ Request a Call Back{%- endcapture -%}
       function pick(i) {
         if (i === active) return;
         dir = i > active ? 1 : -1;
+        root.classList.add('is-quick');   // a click answers quickly (0.9s); the next auto step goes back to 4s
         show(i);
         start();
       }
