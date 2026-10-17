@@ -42,11 +42,11 @@
                 <s>₹{{ hv.compare_at_price | money_without_currency | remove: '.00' }}/-</s>
               {%- endif -%}
             {%- endcapture -%}
-            {% render 'lh550-buy-button', product: section.settings.product, action: 'buy', class: 'lh-btn lh-btn--primary lh-hero__btn', content: buy_html %}
+            {% render 'lh550-buy-button', product: section.settings.product, action: 'buy', class: 'lh-btn lh-btn--primary lh-btn--sweep lh-hero__btn', content: buy_html %}
             {%- capture add_html -%}<span>Add to Cart</span>{%- endcapture -%}
             {% render 'lh550-buy-button', product: section.settings.product, action: 'add', class: 'lh-btn lh-btn--outline lh-hero__btn', content: add_html %}
           {%- else -%}
-            <a class="lh-btn lh-btn--primary lh-hero__btn" href="{{ section.settings.button_link | default: '/collections/all' }}">
+            <a class="lh-btn lh-btn--primary lh-btn--sweep lh-hero__btn" href="{{ section.settings.button_link | default: '/collections/all' }}">
               <span>Buy Now @{{ section.settings.price_text | default: '₹3,990/-' }}</span>
               <s>{{ section.settings.compare_text | default: '₹8,499/-' }}</s>
             </a>

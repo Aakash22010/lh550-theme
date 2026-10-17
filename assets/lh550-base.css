@@ -138,6 +138,41 @@ body.lh-body {
   .lh-btn--outline:hover { background: var(--lh-blue); color: #fff; }
 }
 
+/* Sweep button (Buy Now / Add to Cart) - solid blue pill; on hover two white end caps slide from the center out to
+   the edges. Works at any width: each cap is a half-width layer clipped to --lh-sweep-cap and moved by transform.
+   Usage: class="lh-btn lh-btn--primary lh-btn--sweep", content wrapped in an element (e.g. <span>) */
+.lh-btn--sweep {
+  --lh-sweep-cap: calc(2.4 * var(--lh-u));
+  position: relative; overflow: hidden; isolation: isolate;
+  border: calc(0.2 * var(--lh-u)) solid var(--lh-blue); background: var(--lh-blue); color: #fff;
+}
+.lh-btn--sweep > * { position: relative; z-index: 2; }
+.lh-btn--sweep::before,
+.lh-btn--sweep::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 50%; background: #fff; z-index: 1;
+  pointer-events: none; opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.35s ease;
+}
+.lh-btn--sweep::before {
+  left: 0;
+  clip-path: inset(0 calc(100% - var(--lh-sweep-cap)) 0 0 round 9999px 0 0 9999px);
+  transform: translateX(calc(100% - var(--lh-sweep-cap)));
+}
+.lh-btn--sweep::after {
+  right: 0;
+  clip-path: inset(0 0 0 calc(100% - var(--lh-sweep-cap)) round 0 9999px 9999px 0);
+  transform: translateX(calc(var(--lh-sweep-cap) - 100%));
+}
+@media (hover: hover) {
+  .lh-btn--sweep:hover { background: var(--lh-blue); box-shadow: none; transform: none; }
+  .lh-btn--sweep:hover::before,
+  .lh-btn--sweep:hover::after { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lh-btn--sweep::before,
+  .lh-btn--sweep::after { transition: none; }
+}
+
 /* Section heading - Inter 500 36 (24 on mobile) */
 .lh-title { font: 500 calc(3.6 * var(--lh-u))/1.2 var(--lh-font); color: #000; }
 @media (max-width: 899px) { .lh-title { font-size: calc(2.4 * var(--lh-u)); } }

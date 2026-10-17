@@ -44,7 +44,7 @@
     {% # "What more You can do" sub-band %}
     <div class="lh-software__more">
       <h2 class="lh-software__more-title">{{ section.settings.more_title | escape }}</h2>
-      <ul class="lh-software__more-grid lh-scroller" data-lh-track>
+      <ul class="lh-software__more-grid">
         {%- assign cap_i = 0 -%}
         {%- for block in section.blocks -%}
           {%- if block.type == 'capability' -%}

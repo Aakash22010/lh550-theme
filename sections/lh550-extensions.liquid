@@ -34,9 +34,9 @@
         <h3 class="lh-extensions__name">{{ title | escape }}</h3>
         {%- if p != blank -%}
           {%- capture btn_content -%}<span>{{ block.settings.button_label | default: 'Add to Cart' | escape }}</span>{%- endcapture -%}
-          {% render 'lh550-buy-button', product: p, action: action, class: 'lh-btn lh-btn--primary lh-extensions__btn', content: btn_content, aria_label: title %}
+          {% render 'lh550-buy-button', product: p, action: action, class: 'lh-btn lh-btn--primary lh-btn--sweep lh-extensions__btn', content: btn_content, aria_label: title %}
         {%- else -%}
-          <a class="lh-btn lh-btn--primary lh-extensions__btn" href="{{ block.settings.button_link | default: '/collections/all' }}"><span>{{ block.settings.button_label | default: 'Add to Cart' | escape }}</span></a>
+          <a class="lh-btn lh-btn--primary lh-btn--sweep lh-extensions__btn" href="{{ block.settings.button_link | default: '/collections/all' }}"><span>{{ block.settings.button_label | default: 'Add to Cart' | escape }}</span></a>
         {%- endif -%}
       </li>
     {%- endfor -%}

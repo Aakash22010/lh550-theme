@@ -20,13 +20,12 @@
   font: 500 calc(1.6 * var(--lh-u))/calc(1.9 * var(--lh-u)) var(--lh-font); color: #000; white-space: nowrap;
   transition: color var(--lh-dur) var(--lh-ease);
 }
-/* Underline that grows in on hover / active page */
+/* Underline that grows in on hover (Figma shows no active-page marker) */
 .lh-header .lh-header__link::after{
   content: ""; position: absolute; left: 0; right: 0; bottom: calc(-0.6 * var(--lh-u)); height: calc(0.2 * var(--lh-u)); border-radius: calc(0.2 * var(--lh-u));
   background: var(--lh-blue); transform: scaleX(0); transform-origin: left; transition: transform var(--lh-dur) var(--lh-ease);
 }
 .lh-header .lh-header__item.has-children .lh-header__link::after{ right: calc(2 * var(--lh-u)); }
-.lh-header .lh-header__link[aria-current="page"]::after{ transform: scaleX(1); }
 .lh-header .lh-header__chevron{ width: calc(1.6 * var(--lh-u)); height: calc(1.6 * var(--lh-u)); transition: transform var(--lh-dur) var(--lh-ease); }
 
 /* Dropdown */
