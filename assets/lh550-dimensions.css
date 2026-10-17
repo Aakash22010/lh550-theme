@@ -1,0 +1,67 @@
+/* ==========================================================================
+   LH550 - Lock dimensions
+   Figma: centred uppercase gradient heading, three annotated diagrams in
+   417 / 428 / rest columns with #a5baf4 rules either side of the mortise
+   (427 tall), footnote under the mortise, durability banner 138 below.
+   Sizes: calc(N * var(--lh-u)) = N x 10 Figma px.
+   ========================================================================== */
+
+/* Heading - Inter 700, uppercase, blue fading lighter downwards */
+.lh-dimensions .lh-dimensions__title{
+  font: 700 calc(4.4 * var(--lh-u))/calc(5.4 * var(--lh-u)) var(--lh-font); text-transform: uppercase; text-align: center;
+  background: linear-gradient(180deg, var(--lh-blue) 0%, #fff 148.9%);
+  -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+  margin-bottom: calc(1.6 * var(--lh-u));
+}
+
+/* Diagrams - each sits at its Figma offset inside its column */
+.lh-dimensions .lh-dimensions__grid{
+  display: grid; grid-template-columns: calc(41.7 * var(--lh-u)) calc(42.8 * var(--lh-u)) minmax(0, 1fr);
+  min-height: calc(42.7 * var(--lh-u));
+}
+.lh-dimensions .lh-dimensions__figure{ position: relative; min-width: 0; }
+.lh-dimensions .lh-dimensions__figure--mortise{ border-inline: calc(0.1 * var(--lh-u)) solid #a5baf4; }
+.lh-dimensions .lh-dimensions__img{ display: block; height: auto; mix-blend-mode: multiply; } /* white diagram backgrounds can overlap on mobile */
+.lh-dimensions .lh-dimensions__figure--front .lh-dimensions__img{ width: calc(23.12 * var(--lh-u)); margin: calc(6.56 * var(--lh-u)) 0 0 calc(15.04 * var(--lh-u)); }
+.lh-dimensions .lh-dimensions__figure--mortise .lh-dimensions__img{ width: calc(30.8 * var(--lh-u)); margin: calc(6.08 * var(--lh-u)) 0 0 calc(6.48 * var(--lh-u)); }
+.lh-dimensions .lh-dimensions__figure--back .lh-dimensions__img{ width: calc(27.2 * var(--lh-u)); margin: calc(6.48 * var(--lh-u)) 0 0 calc(9.04 * var(--lh-u)); }
+
+/* Footnote - centred under the mortise */
+.lh-dimensions .lh-dimensions__footnote{
+  position: absolute; left: 0; right: 0; top: calc(38.6 * var(--lh-u)); text-align: center;
+  font: 500 calc(1.1 * var(--lh-u))/calc(1.5 * var(--lh-u)) var(--lh-font); color: #5d5d5d;
+}
+
+/* Measurements as screen-reader text */
+.lh-dimensions .lh-dimensions__legend{
+  position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap;
+}
+
+/* Durability banner - full-width rounded figure */
+.lh-dimensions .lh-dimensions__banner{
+  margin-top: calc(13.8 * var(--lh-u));
+  border-radius: calc(3.6 * var(--lh-u)); overflow: hidden;
+}
+.lh-dimensions .lh-dimensions__banner-img{
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 4096 / 2043; object-fit: cover;
+}
+.lh-dimensions .lh-dimensions__banner-img--m{ display: none; }
+
+/* Mobile - two-line heading, diagrams stacked at their Figma offsets (the mortise tucks up beside the front panel),
+   no rules or footnote */
+@media (max-width: 899px) {
+  .lh-dimensions .lh-dimensions__title{ max-width: calc(30 * var(--lh-u)); margin: 0 auto calc(2.7 * var(--lh-u)); }
+  /* The stack is laid out on the 402 frame; centred so wider phones / tablets don't leave it hugging the left */
+  .lh-dimensions .lh-dimensions__grid{ display: block; min-height: 0; width: calc(40.2 * var(--lh-u)); margin-inline: calc((100% - 40.2 * var(--lh-u)) / 2); }
+  .lh-dimensions .lh-dimensions__figure--mortise{ border: 0; margin-top: calc(-7.6 * var(--lh-u)); }
+  .lh-dimensions .lh-dimensions__figure--back{ margin-top: calc(1.44 * var(--lh-u)); }
+  .lh-dimensions .lh-dimensions__figure--front .lh-dimensions__img{ margin: 0 0 0 calc(6.4 * var(--lh-u)); }
+  .lh-dimensions .lh-dimensions__figure--mortise .lh-dimensions__img{ margin: 0 0 0 calc(6.08 * var(--lh-u)); }
+  .lh-dimensions .lh-dimensions__figure--back .lh-dimensions__img{ margin: 0 0 0 calc(4.24 * var(--lh-u)); }
+  .lh-dimensions .lh-dimensions__footnote{ display: none; }
+  /* Portrait banner on phones (Figma 362x588, r36) */
+  .lh-dimensions .lh-dimensions__banner{ width: calc(36.2 * var(--lh-u)); max-width: 100%; margin: calc(6.24 * var(--lh-u)) auto 0; border-radius: calc(3.6 * var(--lh-u)); }
+  .lh-dimensions .lh-dimensions__banner-img--d{ display: none; }
+  .lh-dimensions .lh-dimensions__banner-img--m{ display: block; aspect-ratio: 452 / 735; }
+}

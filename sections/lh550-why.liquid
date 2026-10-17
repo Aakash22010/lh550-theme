@@ -1,0 +1,65 @@
+{%- comment -%}
+  LH550 - Why LAVNA
+  Figma: gradient "Why LAVNA?" heading over full-width cards that overlap like a stack (70% fills, so each card tints
+  the one under it); mobile is a 2x2 grid. One block per reason (icon + text). Card colours alternate between the two
+  colour settings.
+{%- endcomment -%}
+{% render 'lh550-assets' %}
+{{ 'lh550-why.css' | asset_url | stylesheet_tag }}
+
+<section class="lh lh-section lh-why"
+  style="--pt:{{ section.settings.padding_top }};--ptm:{{ section.settings.padding_top_mobile }};--why-a:{{ section.settings.color_blue }};--why-b:{{ section.settings.color_peach }};--n:{{ section.blocks.size }}">
+  <div class="lh-container">
+    <h2 class="lh-why__title"><span>{{ section.settings.title | escape }}</span></h2>
+  </div>
+
+  <ol class="lh-why__cards" role="list">
+    {%- for block in section.blocks -%}
+      <li class="lh-why__card" style="--i:{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+        <div class="lh-why__body">
+          <span class="lh-why__icon-box">
+            {%- render 'lh550-image', image: block.settings.icon, fallback: block.settings.fallback, alt: block.settings.icon_alt, class: 'lh-why__icon', sizes: '64px', width: 76, height: 69 -%}
+          </span>
+          <p class="lh-why__text">{{ block.settings.text | escape }}</p>
+        </div>
+      </li>
+    {%- endfor -%}
+  </ol>
+</section>
+
+{% schema %}
+{
+  "name": "LH550 why",
+  "class": "lh550-why-section",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading", "default": "Why LAVNA?" },
+    { "type": "color", "id": "color_blue", "label": "Card colour 1", "default": "#afd7f0" },
+    { "type": "color", "id": "color_peach", "label": "Card colour 2", "default": "#f4c2b1" },
+    { "type": "range", "id": "padding_top", "label": "Space above (desktop, px)", "min": 0, "max": 200, "step": 2, "default": 78 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Space above (mobile, px)", "min": 0, "max": 120, "step": 2, "default": 48 }
+  ],
+  "blocks": [
+    {
+      "type": "reason",
+      "name": "Reason",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Reason" },
+        { "type": "image_picker", "id": "icon", "label": "Icon" },
+        { "type": "text", "id": "fallback", "label": "Bundled icon (asset file)", "default": "lh550-why-best.png", "info": "Used when no icon is picked." },
+        { "type": "text", "id": "icon_alt", "label": "Icon alt text", "default": "Reason icon" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "LH550 why",
+      "blocks": [
+        { "type": "reason", "settings": { "text": "India’s Only Niche Brand in the Smart Lock Industry", "fallback": "lh550-why-best.png", "icon_alt": "Award badge icon" } },
+        { "type": "reason", "settings": { "text": "Fastest Delivery Across India, Right to Your Doorstep.", "fallback": "lh550-why-fast.png", "icon_alt": "Fast delivery icon" } },
+        { "type": "reason", "settings": { "text": "Installation & Support Across 25+ Cities", "fallback": "lh550-why-tools.png", "icon_alt": "Installation tools icon" } },
+        { "type": "reason", "settings": { "text": "Trusted by Over 1.5 Million Satisfied Customer", "fallback": "lh550-why-like.png", "icon_alt": "Thumbs up icon" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

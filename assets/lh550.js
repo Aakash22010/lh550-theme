@@ -66,7 +66,7 @@
     });
   }
 
-  // ---- Slider: prev / next arrows scroll one card, arrows disable at the ends
+  // ---- Slider: optional prev / next arrows scroll one card (disabled at the ends), optional autoplay
   function slider(root) {
     if (!once(root, "data-lh-slider-ready")) return;
     var track = root.querySelector("[data-lh-track]");
@@ -90,18 +90,16 @@
     window.addEventListener("resize", update);
     update();
 
-    // autoplay - pauses on hover / focus, loops back to the start
+    // autoplay - keeps going on hover; waits while a card has keyboard focus or the row is being dragged; loops back to the start
     var ms = parseInt(root.getAttribute("data-lh-autoplay"), 10);
     if (ms > 0 && !reduce) {
       var timer = null, paused = false;
       function tick() {
-        if (paused || document.hidden) return;
+        if (paused || document.hidden || track.classList.contains("is-dragging")) return;
         if (atEnd()) track.scrollTo({ left: 0, behavior: "smooth" }); else go(1);
       }
       function start() { stop(); timer = setInterval(tick, ms); }
       function stop() { if (timer) clearInterval(timer); timer = null; }
-      root.addEventListener("pointerenter", function () { paused = true; });
-      root.addEventListener("pointerleave", function () { paused = false; });
       root.addEventListener("focusin", function () { paused = true; });
       root.addEventListener("focusout", function () { paused = false; });
       start();
@@ -128,6 +126,7 @@
       if (!down) return;
       down = false;
       if (!moved) return;
+      if (track.classList.contains("lh-scroller--free")) { track.classList.remove("is-dragging"); return; }
       // Settle on the nearest snap position, nudged in the drag direction, honouring each card's scroll-snap-align.
       var tr = track.getBoundingClientRect(), best = track.scrollLeft, bestD = Infinity;
       var want = track.scrollLeft - Math.sign(lastDx) * Math.min(Math.abs(lastDx), 60);

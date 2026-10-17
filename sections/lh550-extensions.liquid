@@ -13,7 +13,7 @@
     <h2 class="lh-extensions__title">{{ section.settings.title | default: 'Compatible Extensions For Hotel Locks & Management' | escape }}</h2>
   </div>
 
-  <ul class="lh-scroller lh-extensions__track" role="list">
+  <ul class="lh-scroller lh-scroller--free lh-extensions__track" role="list">
     {%- for block in section.blocks -%}
       {%- liquid
         assign p = block.settings.product

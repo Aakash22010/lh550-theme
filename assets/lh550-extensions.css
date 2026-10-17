@@ -16,7 +16,6 @@
   gap: calc(3.7 * var(--lh-u));
   margin: calc(4.8 * var(--lh-u)) 0 0;
   padding: 0 var(--edge) calc(1 * var(--lh-u));
-  scroll-padding-inline: var(--edge);
   list-style: none;
   overflow-x: auto;
   scrollbar-width: none;

@@ -702,7 +702,7 @@
             "text": "Provides managers with full access to all authorized areas, enabling easy supervision and complete control of hotel operations.",
             "image_alt": "Manager tapping an RFID card on the LAVNA lock",
             "fallback": "lh550-rfid-manager.png",
-            "focal_desktop": "50% 0%",
+            "focal_desktop": "50% 35%",
             "focal_mobile": "50% 0%"
           }
         },
@@ -713,7 +713,7 @@
             "text": "Offers guests secure and convenient access to their assigned rooms and permitted amenities throughout \ntheir stay.",
             "image_alt": "Guest tapping a smart RFID card on the LAVNA lock",
             "fallback": "lh550-rfid-guest.png",
-            "focal_desktop": "50% 0%",
+            "focal_desktop": "50% 35%",
             "focal_mobile": "50% 0%"
           }
         },
@@ -724,7 +724,7 @@
             "text": "Allows housekeeping staff controlled entry to guest rooms and designated service areas during scheduled hours, ensuring efficient and timely maintenance.",
             "image_alt": "Housekeeping staff tapping an RFID card on the LAVNA lock",
             "fallback": "lh550-rfid-housekeeping.png",
-            "focal_desktop": "50% 0%",
+            "focal_desktop": "50% 35%",
             "focal_mobile": "50% 0%"
           }
         }
@@ -847,42 +847,42 @@
           "type": "product",
           "settings": {
             "title": "LAVNA Digital Padlock LP45",
-            "fallback": "lh400-product-padlock.png"
+            "fallback": "lh550-product-padlock.png"
           }
         },
         "product_2": {
           "type": "product",
           "settings": {
             "title": "LAVNA Digital Cabinet Lock LS10 Black",
-            "fallback": "lh400-product-ls10.png"
+            "fallback": "lh550-product-ls10.png"
           }
         },
         "product_3": {
           "type": "product",
           "settings": {
             "title": "LAVNA Smart Safe Locker 58L",
-            "fallback": "lh400-product-safe.png"
+            "fallback": "lh550-product-safe.png"
           }
         },
         "product_4": {
           "type": "product",
           "settings": {
             "title": "LAVNA Digital Smart Gateway",
-            "fallback": "lh400-product-gateway.png"
+            "fallback": "lh550-product-gateway.png"
           }
         },
         "product_5": {
           "type": "product",
           "settings": {
             "title": "LAVNA Smart Lift Controller",
-            "fallback": "lh400-product-lift.png"
+            "fallback": "lh550-product-lift.png"
           }
         },
         "product_6": {
           "type": "product",
           "settings": {
             "title": "LAVNA Digital Cabinet Lock LS11 Black",
-            "fallback": "lh400-product-ls11.png"
+            "fallback": "lh550-product-ls11.png"
           }
         }
       },
@@ -903,7 +903,7 @@
           "type": "reason",
           "settings": {
             "text": "India’s Only Niche Brand in the Smart Lock Industry",
-            "fallback": "lh400-icon-best.svg",
+            "fallback": "lh550-why-best.png",
             "icon_alt": "Award badge icon"
           }
         },
@@ -911,7 +911,7 @@
           "type": "reason",
           "settings": {
             "text": "Fastest Delivery Across India, Right to Your Doorstep.",
-            "fallback": "lh400-icon-fast.svg",
+            "fallback": "lh550-why-fast.png",
             "icon_alt": "Fast delivery icon"
           }
         },
@@ -919,7 +919,7 @@
           "type": "reason",
           "settings": {
             "text": "Installation & Support Across 25+ Cities",
-            "fallback": "lh400-icon-tools.svg",
+            "fallback": "lh550-why-tools.png",
             "icon_alt": "Installation tools icon"
           }
         },
@@ -927,7 +927,7 @@
           "type": "reason",
           "settings": {
             "text": "Trusted by Over 1.5 Million Satisfied Customer",
-            "fallback": "lh400-icon-like.svg",
+            "fallback": "lh550-why-like.png",
             "icon_alt": "Thumbs up icon"
           }
         }
@@ -947,7 +947,8 @@
           "type": "logo",
           "settings": {
             "name": "Visa",
-            "fallback": "lh400-pay-visa.png",
+            "fallback": "lh550-pay-visa.png",
+            "width": 100,
             "width_mobile": 64
           }
         },
@@ -955,7 +956,8 @@
           "type": "logo",
           "settings": {
             "name": "Mastercard",
-            "fallback": "lh400-pay-mastercard.png",
+            "fallback": "lh550-pay-mastercard.png",
+            "width": 100,
             "width_mobile": 54
           }
         },
@@ -963,32 +965,36 @@
           "type": "logo",
           "settings": {
             "name": "RuPay",
-            "fallback": "lh400-pay-rupay.png",
-            "width_mobile": 78
+            "fallback": "lh550-pay-rupay.png",
+            "width": 86,
+            "width_mobile": 68
           }
         },
         "logo_4": {
           "type": "logo",
           "settings": {
             "name": "Paytm",
-            "fallback": "lh400-pay-paytm.png",
-            "width_mobile": 64
+            "fallback": "lh550-pay-paytm.png",
+            "width": 102,
+            "width_mobile": 66
           }
         },
         "logo_5": {
           "type": "logo",
           "settings": {
             "name": "Google Pay",
-            "fallback": "lh400-pay-gpay.png",
-            "width_mobile": 64
+            "fallback": "lh550-pay-gpay.png",
+            "width": 100,
+            "width_mobile": 66
           }
         },
         "logo_6": {
           "type": "logo",
           "settings": {
             "name": "PhonePe",
-            "fallback": "lh400-pay-phonepe.png",
-            "width_mobile": 64
+            "fallback": "lh550-pay-phonepe.png",
+            "width": 76,
+            "width_mobile": 50
           }
         }
       },

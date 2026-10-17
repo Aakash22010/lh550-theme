@@ -187,6 +187,8 @@ body.lh-body {
 .lh-scroller > * { scroll-snap-align: start; flex: none; }
 .lh-scroller img { -webkit-user-drag: none; user-select: none; }
 .lh-scroller.is-dragging { scroll-snap-type: none; cursor: grabbing; user-select: none; }
+/* Free scrolling - no snap on touch or after a mouse drag */
+.lh-scroller.lh-scroller--free { scroll-snap-type: none; }
 .lh-scroller.is-dragging * { pointer-events: none; }
 
 /* Slider arrows - 34px round */

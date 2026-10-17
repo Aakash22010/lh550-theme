@@ -1,0 +1,163 @@
+{%- comment -%}
+  LH550 - Footer
+  Figma: "Hotel door lh550" desktop footer band y13628-14223 (mobile pending).
+  Payment strip on top (6 logos in a row; 3 per row on mobile), then the
+  footer grid: logo + about text, Quick Links and Support columns, social
+  icons and the two phone numbers.
+  The link columns use a Shopify menu when one is picked, else the "Label | /url" lines from the text setting.
+{%- endcomment -%}
+{% render 'lh550-assets' %}
+{{ 'lh550-footer.css' | asset_url | stylesheet_tag }}
+
+<footer class="lh lh-section lh-footer" style="--pt:{{ section.settings.padding_top }};--ptm:{{ section.settings.padding_top_mobile }}">
+  <div class="lh-payments">
+    <div class="lh-payments__inner">
+      <h2 class="lh-payments__title">{{ section.settings.payments_title | escape }}</h2>
+      {% # One block per logo %}
+      <ul class="lh-payments__logos" role="list">
+        {%- for block in section.blocks -%}
+          <li class="lh-payments__logo" style="--w:{{ block.settings.width }};--wm:{{ block.settings.width_mobile }}" {{ block.shopify_attributes }}>
+            {%- render 'lh550-image', image: block.settings.image, fallback: block.settings.fallback, alt: block.settings.name, class: 'lh-payments__img', sizes: '100px', width: 400, height: 130 -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+
+  <div class="lh-footer__grid">
+    {% # Brand: logo + about text %}
+    <div class="lh-footer__brand">
+      <a class="lh-footer__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | default: 'LAVNA' | escape }}">
+        {%- render 'lh550-image', image: section.settings.logo, fallback: 'lh550-logo.png', alt: 'LAVNA', class: 'lh-footer__logo-img', width: 500, height: 200 -%}
+      </a>
+      <div class="lh-footer__about">{{ section.settings.about }}</div>
+    </div>
+
+    {%- # Quick Links + Support columns, each followed by a divider -%}
+    {%- assign menus = 'quick,support' | split: ',' -%}
+    {%- for m in menus -%}
+      {%- if m == 'quick' -%}
+        {%- assign menu = section.settings.quick_menu -%}
+        {%- assign heading = section.settings.quick_title -%}
+        {%- assign fallback_links = section.settings.quick_links -%}
+      {%- else -%}
+        {%- assign menu = section.settings.support_menu -%}
+        {%- assign heading = section.settings.support_title -%}
+        {%- assign fallback_links = section.settings.support_links -%}
+      {%- endif -%}
+      <nav class="lh-footer__col lh-footer__col--{{ m }}" aria-label="{{ heading | escape }}">
+        <h2 class="lh-footer__heading">{{ heading | escape }}</h2>
+        <ul class="lh-footer__links" role="list">
+          {%- if menu.links.size > 0 -%}
+            {%- for link in menu.links -%}
+              <li><a class="lh-footer__link" href="{{ link.url }}">{{ link.title | escape }}</a></li>
+            {%- endfor -%}
+          {%- else -%}
+            {%- # No menu picked: one link per line, "Label | /url" -%}
+            {%- assign lines = fallback_links | newline_to_br | split: '<br />' -%}
+            {%- for line in lines -%}
+              {%- assign parts = line | strip | split: '|' -%}
+              {%- assign label = parts[0] | strip -%}
+              {%- if label != blank -%}
+                {%- assign href = parts[1] | strip | default: '#' -%}
+                <li><a class="lh-footer__link" href="{{ href }}">{{ label | escape }}</a></li>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+        </ul>
+      </nav>
+      <span class="lh-footer__divider lh-footer__divider--{{ m }}" aria-hidden="true"></span>
+    {%- endfor -%}
+
+    {% # Social icons + phone numbers -%}
+    <div class="lh-footer__col lh-footer__col--social">
+      <h2 class="lh-footer__heading">{{ section.settings.social_title | escape }}</h2>
+      <ul class="lh-footer__social" role="list">
+        {%- assign networks = 'facebook,instagram,linkedin,youtube' | split: ',' -%}
+        {%- for n in networks -%}
+          {%- assign key = n | append: '_url' -%}
+          {%- assign url = section.settings[key] | default: '#' -%}
+          <li>
+            <a class="lh-footer__social-link" href="{{ url }}"{% if url != '#' %} target="_blank" rel="noopener"{% endif %} aria-label="{{ n | capitalize }}">
+              <img src="{{ 'lh550-social-' | append: n | append: '.png' | asset_url }}" alt="" width="40" height="40" loading="lazy">
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+      {% # Sales / customer care numbers - each hidden when left empty %}
+      <div class="lh-footer__contacts">
+        {%- if section.settings.sales_phone != blank -%}
+          <div class="lh-footer__contact">
+            <h3 class="lh-footer__contact-title">{{ section.settings.sales_title | escape }}</h3>
+            <a class="lh-footer__phone" href="tel:{{ section.settings.sales_phone | remove: ' ' | remove: '-' }}">{{ section.settings.sales_phone | escape }}</a>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.customer_phone != blank -%}
+          <div class="lh-footer__contact">
+            <h3 class="lh-footer__contact-title">{{ section.settings.customer_title | escape }}</h3>
+            <a class="lh-footer__phone" href="tel:{{ section.settings.customer_phone | remove: ' ' | remove: '-' }}">{{ section.settings.customer_phone | escape }}</a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "LH550 footer",
+  "tag": "div",
+  "class": "lh550-footer-section",
+  "settings": [
+    { "type": "text", "id": "payments_title", "label": "Payment strip heading", "default": "Payment Methods" },
+    { "type": "image_picker", "id": "logo", "label": "Logo", "info": "Leave empty to use the LAVNA logo from the design." },
+    { "type": "richtext", "id": "about", "label": "About text", "default": "<p><strong>LAVNA Smart Door Locks</strong> are designed for homes, offices, and hotels, delivering durable and secure solutions that elevate comfort, safety, and everyday convenience.</p>" },
+    { "type": "header", "content": "Links" },
+    { "type": "text", "id": "quick_title", "label": "First column heading", "default": "Quick Links" },
+    { "type": "link_list", "id": "quick_menu", "label": "First column menu", "info": "Pick a menu from Online Store > Navigation. While empty, the links below are shown." },
+    { "type": "textarea", "id": "quick_links", "label": "First column links (used when no menu is picked)", "info": "One per line: Label | /url", "default": "Home | /\nAbout Us | /pages/about-us\nCollection | /collections/all\nContact Us | /pages/contact\nBlog | /blogs/news" },
+    { "type": "text", "id": "support_title", "label": "Second column heading", "default": "Support Links" },
+    { "type": "link_list", "id": "support_menu", "label": "Second column menu", "info": "Pick a menu from Online Store > Navigation. While empty, the links below are shown." },
+    { "type": "textarea", "id": "support_links", "label": "Second column links (used when no menu is picked)", "info": "One per line: Label | /url", "default": "Terms & Conditions | /policies/terms-of-service\nShipping Policy | /policies/shipping-policy\nReturn & Replacement | /policies/refund-policy\nWarranty | /pages/warranty\nPrivacy Policy | /policies/privacy-policy" },
+    { "type": "header", "content": "Social media" },
+    { "type": "text", "id": "social_title", "label": "Heading", "default": "Social Media" },
+    { "type": "url", "id": "facebook_url", "label": "Facebook" },
+    { "type": "url", "id": "instagram_url", "label": "Instagram" },
+    { "type": "url", "id": "linkedin_url", "label": "LinkedIn" },
+    { "type": "url", "id": "youtube_url", "label": "YouTube" },
+    { "type": "header", "content": "Contact" },
+    { "type": "text", "id": "sales_title", "label": "First contact heading", "default": "Sales Support" },
+    { "type": "text", "id": "sales_phone", "label": "First contact phone", "default": "+91 9971427608" },
+    { "type": "text", "id": "customer_title", "label": "Second contact heading", "default": "Customer Support" },
+    { "type": "text", "id": "customer_phone", "label": "Second contact phone", "default": "+91 9667771077" },
+    { "type": "range", "id": "padding_top", "label": "Space above (desktop, px)", "min": 0, "max": 200, "step": 2, "default": 0 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Space above (mobile, px)", "min": 0, "max": 120, "step": 2, "default": 0 }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Name (alt text)", "default": "Payment method" },
+        { "type": "image_picker", "id": "image", "label": "Logo" },
+        { "type": "text", "id": "fallback", "label": "Bundled logo (asset file)", "default": "lh550-pay-visa.png", "info": "Used when no logo is picked." },
+        { "type": "range", "id": "width", "label": "Width on desktop (px)", "min": 40, "max": 140, "step": 2, "default": 100 },
+        { "type": "range", "id": "width_mobile", "label": "Width on mobile (px)", "min": 30, "max": 100, "step": 2, "default": 64 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "LH550 footer",
+      "blocks": [
+        { "type": "logo", "settings": { "name": "Visa", "fallback": "lh550-pay-visa.png", "width": 100, "width_mobile": 64 } },
+        { "type": "logo", "settings": { "name": "Mastercard", "fallback": "lh550-pay-mastercard.png", "width": 100, "width_mobile": 54 } },
+        { "type": "logo", "settings": { "name": "RuPay", "fallback": "lh550-pay-rupay.png", "width": 86, "width_mobile": 68 } },
+        { "type": "logo", "settings": { "name": "Paytm", "fallback": "lh550-pay-paytm.png", "width": 102, "width_mobile": 66 } },
+        { "type": "logo", "settings": { "name": "Google Pay", "fallback": "lh550-pay-gpay.png", "width": 100, "width_mobile": 66 } },
+        { "type": "logo", "settings": { "name": "PhonePe", "fallback": "lh550-pay-phonepe.png", "width": 76, "width_mobile": 50 } }
+      ]
+    }
+  ]
+}
+{% endschema %}
