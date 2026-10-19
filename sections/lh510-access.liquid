@@ -1,0 +1,468 @@
+{%- comment -%}
+  LH510 - Access
+  Figma: "Hotel door lh510" desktop - "Convenient Access Options" band (rotating
+  icon ring, round room photo and 3 unlock cards) and the quantity-discount
+  callback form band.
+  Blocks: "Unlock card" (one per access method).
+  The callback form posts to # (no backend).
+{%- endcomment -%}
+{% render 'lh510-assets' %}
+{{ 'lh510-access.css' | asset_url | stylesheet_tag }}
+
+{%- assign s = section.settings -%}
+<section class="lh lh-section lh-access" style="--pt:{{ s.padding_top }};--ptm:{{ s.padding_top_mobile }}">
+  <div class="lh-container">
+
+    {% # Band 1 - Convenient Access Options: rotating icon ring, crossfading photo, stacked cards %}
+    {%- assign unlock_count = 0 -%}
+    {%- assign start_index = 0 -%}
+    {%- assign start_found = false -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'unlock' -%}
+        {%- if block.settings.active and start_found == false -%}
+          {%- assign start_index = unlock_count -%}
+          {%- assign start_found = true -%}
+        {%- endif -%}
+        {%- assign unlock_count = unlock_count | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+    <div class="lh-access__band lh-access__band--options" data-lh-options data-start="{{ start_index }}" style="--active:{{ start_index }}">
+      <span class="lh-access__frame" aria-hidden="true"></span>
+      <div class="lh-access__media">
+        <div class="lh-access__ring">
+          <div class="lh-access__photos" aria-hidden="true">
+            <span class="lh-access__shot">
+              {%- render 'lh510-image', image: s.room_image, fallback: 'lh510-access-room.png', alt: '', class: 'lh-access__photo', width: 1535, height: 1024 -%}
+            </span>
+            {%- assign idx = 0 -%}
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'unlock' -%}
+                {%- if block.settings.image != blank -%}
+                  <span class="lh-access__shot lh-access__shot--state{% if idx == start_index %} is-active{% endif %}" data-lh-shot="{{ idx }}">
+                    {{- block.settings.image | image_url: width: 900 | image_tag: class: 'lh-access__photo', alt: '', loading: 'lazy', widths: '450, 900' -}}
+                  </span>
+                {%- endif -%}
+                {%- assign idx = idx | plus: 1 -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+          <div class="lh-access__nodes">
+          {%- assign idx = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'unlock' -%}
+              <button type="button" class="lh-access__node{% if idx == start_index %} is-active{% endif %}" style="--i:{{ idx }}" data-lh-node aria-label="{{ block.settings.title | escape }}" aria-pressed="{% if idx == start_index %}true{% else %}false{% endif %}">
+                <img src="{{ 'lh510-ic-' | append: block.settings.icon | append: '.png' | asset_url }}" alt="" width="78" height="78" loading="lazy">
+              </button>
+              {%- assign idx = idx | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+          </div>
+        </div>
+      </div>
+      <div class="lh-access__options">
+        <h2 class="lh-access__title">{{ s.heading | default: 'Convenient Access Options' | escape }}</h2>
+        <div class="lh-access__cards">
+          {%- assign idx = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'unlock' -%}
+              {%- assign d = idx | minus: start_index -%}
+              <div class="lh-access__card{% if d == 0 %} is-active{% elsif d == 1 %} is-next{% endif %}" style="--i:{{ idx }}" data-lh-card {{ block.shopify_attributes }}>
+                <div class="lh-access__card-body">
+                  <h3 class="lh-access__card-title">{{ block.settings.title | escape }}</h3>
+                  <p class="lh-access__card-text">{{ block.settings.text | escape }}</p>
+                </div>
+              </div>
+              {%- assign idx = idx | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+
+    {% # Band 2 - Quantity discount callback %}
+    {%- comment -%} Title: line 1 is bold, line 2 regular (break the text area with Enter). {%- endcomment -%}
+    {%- capture ct_default -%}Need Quantity Discount?
+Request a Call Back{%- endcapture -%}
+    {%- assign ct = s.callback_title | default: ct_default | escape | newline_to_br | split: '<br />' -%}
+    {%- if ct.size == 1 -%}
+      {%- comment -%} Older one-line titles: break after the question mark. {%- endcomment -%}
+      {%- assign ct = ct[0] | replace: '? ', '?<br />' | split: '<br />' -%}
+    {%- endif -%}
+    {%- assign phone_label_html = s.phone_label | default: 'Phone Number*' | escape | replace: '*', '<span class="lh-access__req" aria-hidden="true">*</span>' -%}
+    {%- assign wa_digits = s.whatsapp_number | remove: '+' | remove: ' ' | remove: '-' -%}
+    {%- assign tel_value = s.phone_number | remove: ' ' | remove: '-' -%}
+    <div class="lh-access__band lh-access__band--callback">
+      <div class="lh-access__panel">
+        {%- assign has_m = false -%}
+        {%- if s.callback_image_mobile != blank -%}{%- assign has_m = true -%}{%- endif -%}
+        <div class="lh-access__callback-media{% if has_m %} has-mobile{% endif %}" aria-hidden="true">
+          {%- render 'lh510-image', image: s.callback_image, fallback: 'lh510-callback.png', alt: '', class: 'lh-access__callback-img lh-access__callback-img--desktop', width: 1184, height: 1320 -%}
+          {%- if has_m -%}
+            {{- s.callback_image_mobile | image_url: width: 600 | image_tag: class: 'lh-access__callback-img lh-access__callback-img--mobile', alt: '', loading: 'lazy', widths: '300, 600' -}}
+          {%- endif -%}
+        </div>
+        <div class="lh-access__form-card">
+          <h2 class="lh-access__form-title"><span class="lh-access__form-title-main">{{ ct[0] | strip }}</span>{% if ct.size > 1 %}<span class="lh-access__form-title-sub">{{ ct[1] | strip }}</span>{% endif %}</h2>
+          <form class="lh-access__form" action="#" onsubmit="return false">
+            <div class="lh-access__field">
+              <label class="lh-access__label" for="lh-phone-{{ section.id }}">{{ phone_label_html }}</label>
+              <input class="lh-access__input" type="tel" id="lh-phone-{{ section.id }}" name="phone" autocomplete="tel" placeholder="{{ s.phone_placeholder | default: 'Enter Phone Number' | escape }}" required>
+            </div>
+            <div class="lh-access__field">
+              <label class="lh-access__label" for="lh-company-{{ section.id }}">{{ s.company_label | default: 'Company Name' | escape }}</label>
+              <input class="lh-access__input" type="text" id="lh-company-{{ section.id }}" name="company" autocomplete="organization" placeholder="{{ s.company_placeholder | default: 'Enter Company Name' | escape }}">
+            </div>
+            <div class="lh-access__field">
+              <label class="lh-access__label" for="lh-qty-{{ section.id }}">{{ s.quantity_label | default: 'Quantity' | escape }}</label>
+              <input class="lh-access__input" type="number" id="lh-qty-{{ section.id }}" name="quantity" min="1" step="1" placeholder="{{ s.quantity_placeholder | default: 'Enter Quantity' | escape }}">
+            </div>
+            <button class="lh-btn lh-btn--primary lh-access__submit" type="submit">{{ s.submit_label | default: 'Submit' | escape }}</button>
+          </form>
+          <p class="lh-access__faster">{{ s.faster_text | default: 'For faster response!' | escape }} {{ s.faster_link_label | default: 'Click the link below' | escape }}</p>
+          <div class="lh-access__contact">
+            <a class="lh-access__contact-link" href="{% if wa_digits != blank %}https://wa.me/{{ wa_digits }}{% else %}#{% endif %}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+              <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path fill="#25D366" d="M24 3C12.4 3 3 12.4 3 24c0 3.9 1.1 7.6 3 10.8L3 45l10.5-2.8C16.6 44 20.2 45 24 45c11.6 0 21-9.4 21-21S35.6 3 24 3z"/><circle cx="24" cy="23" r="13.5" fill="none" stroke="#fff" stroke-width="2.4"/><path fill="#fff" transform="translate(15 14) scale(.75)" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            </a>
+            <a class="lh-access__contact-link" href="{% if tel_value != blank %}tel:{{ tel_value }}{% else %}#{% endif %}" aria-label="Call us">
+              <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="24" fill="#0a62d6"/><path fill="#fff" transform="translate(13.2 13.2) scale(.9)" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  (function () {
+    var STEP_MS = 4000; /* time each state stays open when auto-advancing */
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function setup(root) {
+      if (!root || root.getAttribute('data-lh-ready')) return;
+      root.setAttribute('data-lh-ready', '1');
+
+      var nodes = root.querySelectorAll('[data-lh-node]');
+      var cards = root.querySelectorAll('[data-lh-card]');
+      var shots = root.querySelectorAll('[data-lh-shot]');
+      var count = cards.length;
+      if (count < 2) return;
+
+      var active = parseInt(root.getAttribute('data-start'), 10) || 0;
+      var dir = active >= count - 1 ? -1 : 1;
+      var timer = null, visible = true;
+
+      /* Desktop:the mouse wheel steps through the states (one step per
+         gesture, page held still). Past the first / last state the wheel scrolls the page as usual. */
+      var desktop = window.matchMedia('(min-width: 900px)');
+      var WHEEL_STEP = 40, WHEEL_LOCK_MS = 700, wheelSum = 0, wheelLock = 0;
+      function mostlyInView() {
+        var r = root.getBoundingClientRect(), vh = window.innerHeight;
+        return Math.min(r.bottom, vh) - Math.max(r.top, 0) >= Math.min(r.height, vh) * 0.75;
+      }
+      function onWheel(e) {
+        if (!desktop.matches || e.ctrlKey || Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+        var step = e.deltaY > 0 ? 1 : -1;
+        var next = active + step;
+        if (next < 0 || next > count - 1 || !mostlyInView()) { wheelSum = 0; return; }
+        e.preventDefault();
+        if (Date.now() < wheelLock) return;
+        wheelSum += e.deltaY;
+        if (Math.abs(wheelSum) < WHEEL_STEP) return;
+        wheelSum = 0;
+        wheelLock = Date.now() + WHEEL_LOCK_MS;
+        root.classList.add('is-quick');
+        dir = step;
+        show(next);
+        start();
+      }
+
+      function show(i) {
+        active = i;
+        root.style.setProperty('--active', i);
+        for (var k = 0; k < count; k++) {
+          cards[k].classList.toggle('is-active', k === i);
+          cards[k].classList.toggle('is-next', k === i + 1);
+          if (nodes[k]) {
+            nodes[k].classList.toggle('is-active', k === i);
+            nodes[k].setAttribute('aria-pressed', k === i ? 'true' : 'false');
+          }
+        }
+        for (var s = 0; s < shots.length; s++) {
+          shots[s].classList.toggle('is-active', parseInt(shots[s].getAttribute('data-lh-shot'), 10) === i);
+        }
+      }
+
+      function stop() { if (timer) { clearInterval(timer); timer = null; } }
+      function tick() {
+        if (!document.body.contains(root)) { stop(); return; }
+        var next = active + dir;
+        if (next < 0 || next > count - 1) { dir = -dir; next = active + dir; }
+        root.classList.remove('is-quick');
+        show(next);
+      }
+      function start() {
+        stop();
+        if (reduce || !visible || document.hidden) return;
+        timer = setInterval(tick, STEP_MS);
+      }
+      function pick(i) {
+        if (i === active) return;
+        dir = i > active ? 1 : -1;
+        root.classList.add('is-quick');   // a click answers quickly (0.9s); the next auto step goes back to 4s
+        show(i);
+        start();
+      }
+
+      for (var n = 0; n < nodes.length; n++) {
+        (function (k) { nodes[k].addEventListener('click', function () { pick(k); }); })(n);
+      }
+      for (var c = 0; c < count; c++) {
+        (function (k) { cards[k].addEventListener('click', function () { pick(k); }); })(c);
+      }
+
+      document.addEventListener('visibilitychange', start);
+
+      /* Only auto-advance while the band is on screen */
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          visible = entries[0].isIntersecting;
+          start();
+        }, { threshold: 0.3 }).observe(root);
+      }
+
+      root.addEventListener('wheel', onWheel, { passive: false });
+      start();
+    }
+
+    function boot() {
+      var list = document.querySelectorAll('[data-lh-options]');
+      for (var i = 0; i < list.length; i++) setup(list[i]);
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+    else boot();
+    document.addEventListener('shopify:section:load', boot);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "LH510 access",
+  "tag": "div",
+  "class": "lh510-access-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Band 1 heading",
+      "default": "Convenient Access Options"
+    },
+    {
+      "type": "image_picker",
+      "id": "room_image",
+      "label": "Band 1 round photo (Mobile / base)",
+      "info": "Leave empty to use the room photo from the design. It stays visible whenever a card has no photo of its own."
+    },
+    {
+      "type": "header",
+      "content": "Callback form"
+    },
+    {
+      "type": "textarea",
+      "id": "callback_title",
+      "label": "Form title",
+      "info": "Press Enter to start the second line. Line 1 is shown bold, line 2 regular.",
+      "default": "Need Quantity Discount?\nRequest a Call Back"
+    },
+    {
+      "type": "image_picker",
+      "id": "callback_image",
+      "label": "Form photo (desktop)",
+      "info": "Leave empty to use the hotel photo from the design."
+    },
+    {
+      "type": "image_picker",
+      "id": "callback_image_mobile",
+      "label": "Form photo (mobile)",
+      "info": "The different, tightly cropped photo from the Figma mobile frame (one lock, card holder, sensor). Leave empty to reuse the desktop photo on mobile."
+    },
+    {
+      "type": "text",
+      "id": "phone_label",
+      "label": "Phone field label",
+      "default": "Phone Number*"
+    },
+    {
+      "type": "text",
+      "id": "company_label",
+      "label": "Company field label",
+      "default": "Company Name"
+    },
+    {
+      "type": "text",
+      "id": "quantity_label",
+      "label": "Quantity field label",
+      "default": "Quantity"
+    },
+    {
+      "type": "text",
+      "id": "phone_placeholder",
+      "label": "Phone placeholder",
+      "default": "Enter Phone Number"
+    },
+    {
+      "type": "text",
+      "id": "company_placeholder",
+      "label": "Company placeholder",
+      "default": "Enter Company Name"
+    },
+    {
+      "type": "text",
+      "id": "quantity_placeholder",
+      "label": "Quantity placeholder",
+      "default": "Enter Quantity"
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Submit button label",
+      "default": "Submit"
+    },
+    {
+      "type": "text",
+      "id": "faster_text",
+      "label": "Faster response text",
+      "default": "For faster response!"
+    },
+    {
+      "type": "text",
+      "id": "faster_link_label",
+      "label": "Faster response link label",
+      "default": "Click the link below"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "label": "WhatsApp number",
+      "info": "With country code, e.g. 919876543210. Opens a WhatsApp chat."
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Call number",
+      "info": "e.g. +919876543210. The phone icon dials this number."
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top spacing (desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top spacing (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    }
+  ],
+  "blocks": [
+    {
+      "type": "unlock",
+      "name": "Unlock card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Mobile Unlock"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Can unlock hotel door lock with Mobile app access."
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Badge icon",
+          "default": "bluetooth",
+          "options": [
+            {
+              "value": "bluetooth",
+              "label": "Bluetooth"
+            },
+            {
+              "value": "rfid",
+              "label": "RFID card"
+            },
+            {
+              "value": "key",
+              "label": "Key"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo for this state",
+          "info": "Fades into the round photo when this card is open. Leave empty for Mobile to use the room photo above."
+        },
+        {
+          "type": "checkbox",
+          "id": "active",
+          "label": "Open first",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "LH510 access",
+      "blocks": [
+        {
+          "type": "unlock",
+          "settings": {
+            "title": "Mobile Unlock",
+            "text": "Can unlock hotel door lock with Mobile app access.",
+            "icon": "bluetooth",
+            "active": true
+          }
+        },
+        {
+          "type": "unlock",
+          "settings": {
+            "title": "RFID Unlock",
+            "text": "Can unlock hotel door lock with RFID card access.",
+            "icon": "rfid",
+            "active": false
+          }
+        },
+        {
+          "type": "unlock",
+          "settings": {
+            "title": "Manual Key Unlock",
+            "text": "Can unlock hotel door lock with manual key access.",
+            "icon": "key",
+            "active": false
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

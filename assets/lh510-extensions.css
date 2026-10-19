@@ -1,0 +1,104 @@
+/* ==========================================================================
+   LH510 - Compatible extensions
+   Figma Frame 427319251: 36/500 heading, five 396px cards (gap 37) running
+   off the right edge, light gray rounded tiles (#eeeeee, r32), 18/500 titles,
+   and solid blue pill buttons with center-to-edge white animated hover effect.
+   Sizes: calc(N * var(--lh-u)) = N x 10 Figma px.
+   ========================================================================== */
+.lh-extensions .lh-extensions__title {
+  font: 500 calc(3.6 * var(--lh-u))/1.2 var(--lh-font);
+  color: #000;
+}
+
+.lh-extensions .lh-extensions__track {
+  --edge: max(var(--lh-gutter), (100% - var(--lh-max)) / 2);
+  display: flex;
+  gap: calc(3.7 * var(--lh-u));
+  margin: calc(4.8 * var(--lh-u)) 0 0;
+  padding: 0 var(--edge) calc(1 * var(--lh-u));
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.lh-extensions .lh-extensions__track::-webkit-scrollbar { display: none; }
+
+.lh-extensions .lh-extensions__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(2.4 * var(--lh-u));
+  width: calc(39.6 * var(--lh-u));
+  flex: none;
+}
+
+.lh-extensions .lh-extensions__tile {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: calc(39.6 * var(--lh-u));
+  background: #eeeeee;
+  border-radius: calc(3.2 * var(--lh-u));
+  padding: calc(3.6 * var(--lh-u));
+  box-sizing: border-box;
+}
+
+.lh-extensions .lh-extensions__img {
+  width: 100%;
+  height: 100%;
+  max-height: calc(30.4 * var(--lh-u));
+  object-fit: contain;
+}
+
+.lh-extensions .lh-extensions__name {
+  max-width: calc(26 * var(--lh-u));
+  font: 500 calc(1.8 * var(--lh-u))/calc(2.4 * var(--lh-u)) var(--lh-font);
+  color: #000;
+  text-align: center;
+  margin: 0;
+}
+
+/* Add to Cart - shared lh-btn--sweep hover animation (lh510-base.css) */
+.lh-extensions .lh-extensions__btn {
+  min-width: calc(23.9 * var(--lh-u));
+  height: calc(4.8 * var(--lh-u));
+  padding: 0 calc(2.8 * var(--lh-u));
+  border-radius: 9999px;
+  box-sizing: border-box;
+}
+
+.lh-extensions .lh-extensions__btn > span {
+  color: #fff;
+  font: 600 calc(1.6 * var(--lh-u))/1 var(--lh-font);
+  white-space: nowrap;
+}
+
+@media (max-width: 899px) {
+  .lh-extensions .lh-extensions__title {
+    font-size: calc(2.4 * var(--lh-u));
+    line-height: calc(3 * var(--lh-u));
+    padding: 0 var(--lh-gutter);
+  }
+  .lh-extensions .lh-extensions__track {
+    gap: calc(2 * var(--lh-u));
+    margin-top: calc(2.8 * var(--lh-u));
+  }
+  .lh-extensions .lh-extensions__card {
+    width: calc(29 * var(--lh-u));
+    gap: calc(1.8 * var(--lh-u));
+  }
+  .lh-extensions .lh-extensions__tile {
+    height: calc(29 * var(--lh-u));
+    border-radius: calc(2.4 * var(--lh-u));
+    padding: calc(2.4 * var(--lh-u));
+  }
+  .lh-extensions .lh-extensions__name {
+    font-size: calc(1.6 * var(--lh-u));
+    line-height: calc(2.1 * var(--lh-u));
+    max-width: 100%;
+  }
+  .lh-extensions .lh-extensions__btn {
+    --lh-sweep-cap: calc(2.1 * var(--lh-u));
+    min-width: calc(20 * var(--lh-u));
+    height: calc(4.2 * var(--lh-u));
+  }
+}

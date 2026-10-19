@@ -1,30 +1,30 @@
-# LAVNA LH550 - Hotel Smart Lock page
+# LAVNA LH510 - Hotel Smart Lock page
 
-Shopify sections for the LH550 hotel smart lock landing page, built from the Figma design
-"hotel page for dev" (desktop + mobile).
-
-Store: webdesign-pkoydjgt.myshopify.com (Horizon base theme). Only the LH550 files and stock Horizon are in this theme.
+Shopify sections for the LH510 hotel smart lock landing page, built from the Figma design
+"Hotel door lh510" (Lavna Locks UI, desktop + mobile). Horizon is the base theme; the LH510 page is the
+home page (`templates/index.json`, layout `lh510`).
 
 ## Files
 
-- `sections/lh550-*.liquid` - one section per page block (header, hero, access, extensions, energy, software, applications, pricing, encoder, energy-pricing, rfid, dimensions, products, why, footer)
-- `snippets/lh550-assets.liquid` - loads fonts, `lh550-base.css` and `lh550.js`; rendered at the top of every section
-- `snippets/lh550-buy-button.liquid` - Buy now / Add to cart button linked to a product
-- `snippets/lh550-image.liquid`, `snippets/lh550-stars.liquid` - image and rating helpers
-- `assets/lh550-*` - section CSS, JS and images
-- `layout/lh550.liquid` - standalone layout for the page
-- `templates/page.lh550.json` - the LH550 page template (`/pages/<handle>` with the lh550 template)
-- `preview-lh550.html` - local standalone preview of the full page
+- `sections/lh510-*.liquid` - one section per page block: header, hero, access, extensions, energy, software,
+  applications, pricing (also used for the energy saver prices), encoder, rfid, dimensions, products, why, footer
+- `snippets/lh510-assets.liquid` - loads the fonts, `lh510-base.css` and `lh510.js`; rendered at the top of every section
+- `snippets/lh510-buy-button.liquid` - Buy now / Add to cart button for a product
+- `snippets/lh510-image.liquid`, `snippets/lh510-stars.liquid` - image and rating helpers
+- `assets/lh510-*` - section CSS, JS and images
+- `layout/lh510.liquid` - layout for the page
+- `sections/header-group.json`, `sections/footer-group.json` - the LH510 header and footer on every page
 
-## Local Preview
+## Products
 
-Run the standalone preview server:
+The buttons buy or add these products (by handle), so create them on the store or pick others in the theme editor:
+
+- `lh510-hotel-smart-lock` - hero and pricing table
+- `lh400-hotel-smart-lock`, `lh500-hotel-smart-lock`, `lh550-hotel-smart-lock` - pricing table and the Products menu
+- `energy-saver-lite`, `energy-saver-pro` - energy saver prices
+
+## Upload
+
 ```bash
-python tools/serve.py 8080
-```
-Then open `http://localhost:8080/preview-lh550.html`.
-
-Or run Shopify CLI theme dev:
-```bash
-shopify theme dev --store https://webdesign-pkoydjgt.myshopify.com/
+shopify theme push --store <store>.myshopify.com --path . --unpublished
 ```

@@ -1,0 +1,54 @@
+/* ==========================================================================
+   LH510 - Why LAVNA
+   Figma desktop: grey gradient heading, full-width cards (r40 top corners) stacked 126 apart. Each card runs to the
+   bottom of the stack with a 70% fill, so it tints the cards under it exactly as in Figma. Mobile: 2x2 grid.
+   Sizes: calc(N * var(--lh-u)) = N x 10 Figma px.
+   ========================================================================== */
+
+/* --why-step = visible band of each card, the last one gets --why-last */
+.lh.lh-why{ --why-step: calc(12.6 * var(--lh-u)); --why-last: calc(13.4 * var(--lh-u)); }
+
+/* Title - Inter 500 130/157, light grey on the left to dark grey on the right */
+.lh-why .lh-why__title{ text-align: center; font: 500 calc(13 * var(--lh-u))/calc(15.7 * var(--lh-u)) var(--lh-font); }
+.lh-why .lh-why__title span{
+  background: linear-gradient(90deg, #9a9a9a 0%, #333 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+}
+
+/* Stack */
+.lh-why .lh-why__cards{
+  position: relative; margin-top: calc(2.4 * var(--lh-u)); list-style: none;
+  height: calc((var(--n, 4) - 1) * var(--why-step) + var(--why-last));
+}
+.lh-why .lh-why__card{
+  position: absolute; left: 0; right: 0; bottom: 0; top: calc(var(--i) * var(--why-step));
+  border-radius: calc(4 * var(--lh-u)) calc(4 * var(--lh-u)) 0 0;
+  background: color-mix(in srgb, var(--why-a) 70%, transparent);
+}
+.lh-why .lh-why__card:nth-child(even){ background: color-mix(in srgb, var(--why-b) 70%, transparent); }
+.lh-why .lh-why__card + .lh-why__card{ box-shadow: 0 calc(-0.8 * var(--lh-u)) calc(2.4 * var(--lh-u)) rgba(44, 44, 44, 0.06); }
+
+/* Icon column (125) + text, centred in the card's visible band */
+.lh-why .lh-why__body{ display: flex; align-items: center; height: calc(11.6 * var(--lh-u)); padding-left: calc(5.4 * var(--lh-u)); }
+.lh-why .lh-why__icon-box{ display: flex; align-items: center; flex: none; width: calc(12.5 * var(--lh-u)); }
+.lh-why .lh-why__icon{ width: calc(6.1 * var(--lh-u)); height: calc(5.2 * var(--lh-u)); object-fit: contain; object-position: left center; }
+.lh-why .lh-why__text{ font: 500 calc(2 * var(--lh-u))/calc(2.4 * var(--lh-u)) var(--lh-font); color: var(--lh-ink-2); }
+
+/* Mobile - 2x2 grid of solid alternating colours (blue, peach / peach, blue) */
+@media (max-width: 899px) {
+  .lh-why .lh-why__title{ text-align: left; font-weight: 600; font-size: calc(2.4 * var(--lh-u)); line-height: calc(2.9 * var(--lh-u)); padding-left: calc(0.2 * var(--lh-u)); }
+  .lh-why .lh-why__title span{ background: none; color: #000; -webkit-text-fill-color: currentColor; }
+  .lh-why .lh-why__cards{
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: calc(1.4 * var(--lh-u)); height: auto;
+    width: min(calc(35.8 * var(--lh-u)), 100% - 2 * var(--lh-gutter)); margin: calc(2.4 * var(--lh-u)) auto 0;
+  }
+  .lh-why .lh-why__card{ position: static; padding: calc(2.4 * var(--lh-u)); border-radius: calc(3.6 * var(--lh-u)); background: var(--why-a); }
+  .lh-why .lh-why__card:nth-child(even){ background: var(--why-b); }
+  .lh-why .lh-why__card:nth-child(4n + 3){ background: var(--why-b); }
+  .lh-why .lh-why__card:nth-child(4n + 4){ background: var(--why-a); }
+  .lh-why .lh-why__card + .lh-why__card{ box-shadow: none; }
+  .lh-why .lh-why__body{ flex-direction: column; align-items: flex-start; gap: calc(1.3 * var(--lh-u)); height: auto; padding-left: 0; }
+  .lh-why .lh-why__icon-box{ width: auto; }
+  .lh-why .lh-why__icon{ width: calc(4.2 * var(--lh-u)); height: calc(3.2 * var(--lh-u)); }
+  .lh-why .lh-why__text{ max-width: calc(12.4 * var(--lh-u)); font-size: calc(1.4 * var(--lh-u)); line-height: calc(1.7 * var(--lh-u)); }
+}

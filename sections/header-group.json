@@ -2,8 +2,8 @@
   "type": "header",
   "name": "t:names.header",
   "sections": {
-    "lh550_header": {
-      "type": "lh550-header",
+    "lh510_header": {
+      "type": "lh510-header",
       "settings": {
         "menu": ""
       }
@@ -101,7 +101,7 @@
     }
   },
   "order": [
-    "lh550_header",
+    "lh510_header",
     "header_announcements_9jGBFp",
     "header_section"
   ]

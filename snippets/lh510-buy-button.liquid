@@ -1,0 +1,36 @@
+{%- comment -%}
+  Product form behind every lh510 "Buy Now" / "Shop Now" button.
+
+  Accepts:
+  - product: {Object} product to buy (required)
+  - action: {String} 'buy' = add + go to checkout, 'add' = add and stay on the page (default)
+  - class: {String} classes for the <button>
+  - content: {String} button inner HTML, captured by the caller
+  - aria_label: {String} accessible name (optional)
+  - sold_out_label: {String} shown instead of content when the variant is sold out (default 'Sold out')
+
+  Usage:
+  {% render 'lh510-buy-button', product: section.settings.product, action: 'buy', class: 'lh-btn lh-btn--primary', content: btn_html %}
+
+  Without JS the form posts to /cart/add ('buy' then redirects to checkout). With lh510.js:
+  - buy: add + go to Shopify's checkout
+  - add: the theme's own cart popup (Dawn notification / drawer, Horizon cart events), otherwise the lh510 notice
+{%- endcomment -%}
+{%- liquid
+  assign lh_variant = product.selected_or_first_available_variant
+  assign lh_action = action | default: 'add'
+  assign lh_sold_out = sold_out_label | default: 'Sold out'
+-%}
+<form class="lh-buy" action="{{ routes.cart_add_url }}" method="post" data-lh-cart-form data-action="{{ lh_action }}"
+  data-product-title="{{ product.title | escape }}" data-cart-url="{{ routes.cart_url }}" data-checkout-url="/checkout">
+  <input type="hidden" name="id" value="{{ lh_variant.id }}">
+  <input type="hidden" name="quantity" value="1">
+  {%- if lh_action == 'buy' %}<input type="hidden" name="return_to" value="/checkout">{% endif %}
+  {%- if lh_variant.available %}
+    <button type="submit" class="{{ class }}"{% if aria_label != blank %} aria-label="{{ aria_label | escape }}"{% endif %}>
+      {{- content }}
+    </button>
+  {%- else %}
+    <button type="submit" class="{{ class }} is-sold-out" disabled aria-disabled="true"{% if aria_label != blank %} aria-label="{{ aria_label | escape }} ({{ lh_sold_out | escape }})"{% endif %}><span>{{ lh_sold_out | escape }}</span></button>
+  {%- endif %}
+</form>

@@ -1,22 +1,22 @@
 {
-  "layout": "lh550",
+  "layout": "lh510",
   "sections": {
     "header": {
-      "type": "lh550-header",
+      "type": "lh510-header",
       "settings": {
         "menu": ""
       }
     },
     "hero": {
-      "type": "lh550-hero",
+      "type": "lh510-hero",
       "settings": {
-        "price_text": "₹5,450/-",
-        "compare_text": "₹14,990/-",
-        "product": "lh550-hotel-smart-lock"
+        "price_text": "₹5,200/-",
+        "compare_text": "₹12,990/-",
+        "product": "lh510-hotel-smart-lock"
       }
     },
     "access": {
-      "type": "lh550-access",
+      "type": "lh510-access",
       "settings": {},
       "blocks": {
         "unlock_1": {
@@ -54,14 +54,14 @@
       ]
     },
     "extensions": {
-      "type": "lh550-extensions",
+      "type": "lh510-extensions",
       "settings": {},
       "blocks": {
         "extension_1": {
           "type": "extension",
           "settings": {
             "title": "LAVNA Smart RFID Cards (Pack of 5)",
-            "fallback": "lh550-ext-rfid-cards.png",
+            "fallback": "lh510-ext-rfid-cards.png",
             "button_label": "Add to Cart",
             "button_action": "add"
           }
@@ -70,7 +70,7 @@
           "type": "extension",
           "settings": {
             "title": "LAVNA Smart Energy Saver",
-            "fallback": "lh550-ext-energy-saver.png",
+            "fallback": "lh510-ext-energy-saver.png",
             "button_label": "Add to Cart",
             "button_action": "add"
           }
@@ -79,7 +79,7 @@
           "type": "extension",
           "settings": {
             "title": "LAVNA Digital Smart Encoder",
-            "fallback": "lh550-ext-encoder.png",
+            "fallback": "lh510-ext-encoder.png",
             "button_label": "Add to Cart",
             "button_action": "add"
           }
@@ -88,7 +88,7 @@
           "type": "extension",
           "settings": {
             "title": "LAVNA Smart Lift Controller",
-            "fallback": "lh550-ext-lift-controller.png",
+            "fallback": "lh510-ext-lift-controller.png",
             "button_label": "Add to Cart",
             "button_action": "add"
           }
@@ -97,7 +97,7 @@
           "type": "extension",
           "settings": {
             "title": "LAVNA Digital Smart Gateway",
-            "fallback": "lh550-ext-gateway.png",
+            "fallback": "lh510-ext-gateway.png",
             "button_label": "Add to Cart",
             "button_action": "add"
           }
@@ -112,14 +112,14 @@
       ]
     },
     "energy": {
-      "type": "lh550-energy",
+      "type": "lh510-energy",
       "settings": {},
       "blocks": {
         "feature_1": {
           "type": "feature",
           "settings": {
             "title": "Energy Saver Pro",
-            "fallback": "lh550-esaver-pro.png",
+            "fallback": "lh510-esaver-pro.png",
             "text": "A valid RFID or key card is inserted.\nPower consumption recorded in Software\nBrief Power delay after card removal."
           }
         },
@@ -127,38 +127,18 @@
           "type": "feature",
           "settings": {
             "title": "Energy Saver Lite",
-            "fallback": "lh550-esaver-lite.png",
+            "fallback": "lh510-esaver-lite.png",
             "text": "Any RFID Card can be inserted.\nSave Electricity when card not placed.\nInstant Power off after card removal."
           }
-        },
-        "shot_3": {
-          "type": "shot",
-          "settings": {}
-        },
-        "shot_4": {
-          "type": "shot",
-          "settings": {}
-        },
-        "shot_5": {
-          "type": "shot",
-          "settings": {}
-        },
-        "shot_6": {
-          "type": "shot",
-          "settings": {}
         }
       },
       "block_order": [
         "feature_1",
-        "feature_2",
-        "shot_3",
-        "shot_4",
-        "shot_5",
-        "shot_6"
+        "feature_2"
       ]
     },
     "software": {
-      "type": "lh550-software",
+      "type": "lh510-software",
       "settings": {
         "more_title": "What More You Can Do"
       },
@@ -263,49 +243,49 @@
       ]
     },
     "applications": {
-      "type": "lh550-applications",
+      "type": "lh510-applications",
       "settings": {},
       "blocks": {
         "app_1": {
           "type": "app",
           "settings": {
             "title": "PG's",
-            "fallback": "lh550-app-pg.png"
+            "fallback": "lh510-app-pg.png"
           }
         },
         "app_2": {
           "type": "app",
           "settings": {
             "title": "Hospital Inventory Area",
-            "fallback": "lh550-app-hospital.png"
+            "fallback": "lh510-app-hospital.png"
           }
         },
         "app_3": {
           "type": "app",
           "settings": {
             "title": "Document Room",
-            "fallback": "lh550-app-document-room.png"
+            "fallback": "lh510-app-document-room.png"
           }
         },
         "app_4": {
           "type": "app",
           "settings": {
             "title": "Gym Private Area",
-            "fallback": "lh550-app-gym.png"
+            "fallback": "lh510-app-gym.png"
           }
         },
         "app_5": {
           "type": "app",
           "settings": {
             "title": "Bank Locker Room",
-            "fallback": "lh550-app-bank-locker.png"
+            "fallback": "lh510-app-bank-locker.png"
           }
         },
         "app_6": {
           "type": "app",
           "settings": {
             "title": "Private Cabin Area",
-            "fallback": "lh550-app-cabin.png"
+            "fallback": "lh510-app-cabin.png"
           }
         }
       },
@@ -319,14 +299,14 @@
       ]
     },
     "pricing": {
-      "type": "lh550-pricing",
+      "type": "lh510-pricing",
       "settings": {},
       "blocks": {
         "product_1": {
           "type": "product",
           "settings": {
             "name": "LH400",
-            "fallback": "lh550-price-lh400.png",
+            "fallback": "lh510-price-lh400.png",
             "discount": "-53%",
             "price": "Rs. 3,990.00",
             "compare_price": "Rs. 8,500.00",
@@ -339,7 +319,7 @@
           "type": "product",
           "settings": {
             "name": "LH500",
-            "fallback": "lh550-price-lh500.png",
+            "fallback": "lh510-price-lh500.png",
             "discount": "-60%",
             "price": "Rs. 5,185.00",
             "compare_price": "Rs. 12,990.00",
@@ -352,7 +332,7 @@
           "type": "product",
           "settings": {
             "name": "LH510",
-            "fallback": "lh550-price-lh510.png",
+            "fallback": "lh510-price-lh510.png",
             "discount": "-60%",
             "price": "Rs. 5,200.00",
             "compare_price": "Rs. 12,990.00",
@@ -458,7 +438,7 @@
           "type": "product",
           "settings": {
             "name": "LH550",
-            "fallback": "lh550-price-lh550.png",
+            "fallback": "lh510-price-lh550.png",
             "discount": "-58%",
             "price": "Rs. 5,450.00",
             "compare_price": "Rs. 12,990.00",
@@ -484,7 +464,7 @@
       ]
     },
     "encoder": {
-      "type": "lh550-encoder",
+      "type": "lh510-encoder",
       "settings": {},
       "blocks": {
         "feature_1": {
@@ -600,7 +580,7 @@
       ]
     },
     "energy-pricing": {
-      "type": "lh550-pricing",
+      "type": "lh510-pricing",
       "settings": {
         "heading": "Energy Saver’s Price & Details",
         "heading_mobile": "Energy Saver Price & Details",
@@ -613,7 +593,7 @@
           "type": "product",
           "settings": {
             "name": "Energy Saver Lite",
-            "fallback": "lh550-esaver-lite-photo.png",
+            "fallback": "lh510-esaver-lite-photo.png",
             "discount": "-53%",
             "price": "Rs. 999.00",
             "compare_price": "Rs. 8,500.00",
@@ -626,7 +606,7 @@
           "type": "product",
           "settings": {
             "name": "Energy Saver Pro",
-            "fallback": "lh550-esaver-pro-photo.png",
+            "fallback": "lh510-esaver-pro-photo.png",
             "discount": "-60%",
             "price": "Rs. 1,299.00",
             "compare_price": "Rs. 12,990.00",
@@ -692,7 +672,7 @@
       ]
     },
     "rfid": {
-      "type": "lh550-rfid",
+      "type": "lh510-rfid",
       "settings": {},
       "blocks": {
         "role_1": {
@@ -701,7 +681,7 @@
             "title": "Hotel\nManager RFID",
             "text": "Provides managers with full access to all authorized areas, enabling easy supervision and complete control of hotel operations.",
             "image_alt": "Manager tapping an RFID card on the LAVNA lock",
-            "fallback": "lh550-rfid-manager.png",
+            "fallback": "lh510-rfid-manager.png",
             "focal_desktop": "50% 35%",
             "focal_mobile": "50% 0%"
           }
@@ -712,7 +692,7 @@
             "title": "Guest\nSmart RFID",
             "text": "Offers guests secure and convenient access to their assigned rooms and permitted amenities throughout \ntheir stay.",
             "image_alt": "Guest tapping a smart RFID card on the LAVNA lock",
-            "fallback": "lh550-rfid-guest.png",
+            "fallback": "lh510-rfid-guest.png",
             "focal_desktop": "50% 35%",
             "focal_mobile": "50% 0%"
           }
@@ -723,7 +703,7 @@
             "title": "House\nKeeping RFID",
             "text": "Allows housekeeping staff controlled entry to guest rooms and designated service areas during scheduled hours, ensuring efficient and timely maintenance.",
             "image_alt": "Housekeeping staff tapping an RFID card on the LAVNA lock",
-            "fallback": "lh550-rfid-housekeeping.png",
+            "fallback": "lh510-rfid-housekeeping.png",
             "focal_desktop": "50% 35%",
             "focal_mobile": "50% 0%"
           }
@@ -736,7 +716,7 @@
       ]
     },
     "dimensions": {
-      "type": "lh550-dimensions",
+      "type": "lh510-dimensions",
       "settings": {},
       "blocks": {
         "note_1": {
@@ -840,49 +820,49 @@
       ]
     },
     "products": {
-      "type": "lh550-products",
+      "type": "lh510-products",
       "settings": {},
       "blocks": {
         "product_1": {
           "type": "product",
           "settings": {
             "title": "LAVNA Digital Padlock LP45",
-            "fallback": "lh550-product-padlock.png"
+            "fallback": "lh510-product-padlock.png"
           }
         },
         "product_2": {
           "type": "product",
           "settings": {
             "title": "LAVNA Digital Cabinet Lock LS10 Black",
-            "fallback": "lh550-product-ls10.png"
+            "fallback": "lh510-product-ls10.png"
           }
         },
         "product_3": {
           "type": "product",
           "settings": {
             "title": "LAVNA Smart Safe Locker 58L",
-            "fallback": "lh550-product-safe.png"
+            "fallback": "lh510-product-safe.png"
           }
         },
         "product_4": {
           "type": "product",
           "settings": {
             "title": "LAVNA Digital Smart Gateway",
-            "fallback": "lh550-product-gateway.png"
+            "fallback": "lh510-product-gateway.png"
           }
         },
         "product_5": {
           "type": "product",
           "settings": {
             "title": "LAVNA Smart Lift Controller",
-            "fallback": "lh550-product-lift.png"
+            "fallback": "lh510-product-lift.png"
           }
         },
         "product_6": {
           "type": "product",
           "settings": {
             "title": "LAVNA Digital Cabinet Lock LS11 Black",
-            "fallback": "lh550-product-ls11.png"
+            "fallback": "lh510-product-ls11.png"
           }
         }
       },
@@ -896,14 +876,14 @@
       ]
     },
     "why": {
-      "type": "lh550-why",
+      "type": "lh510-why",
       "settings": {},
       "blocks": {
         "reason_1": {
           "type": "reason",
           "settings": {
             "text": "India’s Only Niche Brand in the Smart Lock Industry",
-            "fallback": "lh550-why-best.png",
+            "fallback": "lh510-why-best.png",
             "icon_alt": "Award badge icon"
           }
         },
@@ -911,7 +891,7 @@
           "type": "reason",
           "settings": {
             "text": "Fastest Delivery Across India, Right to Your Doorstep.",
-            "fallback": "lh550-why-fast.png",
+            "fallback": "lh510-why-fast.png",
             "icon_alt": "Fast delivery icon"
           }
         },
@@ -919,7 +899,7 @@
           "type": "reason",
           "settings": {
             "text": "Installation & Support Across 25+ Cities",
-            "fallback": "lh550-why-tools.png",
+            "fallback": "lh510-why-tools.png",
             "icon_alt": "Installation tools icon"
           }
         },
@@ -927,7 +907,7 @@
           "type": "reason",
           "settings": {
             "text": "Trusted by Over 1.5 Million Satisfied Customer",
-            "fallback": "lh550-why-like.png",
+            "fallback": "lh510-why-like.png",
             "icon_alt": "Thumbs up icon"
           }
         }
@@ -940,14 +920,14 @@
       ]
     },
     "footer": {
-      "type": "lh550-footer",
+      "type": "lh510-footer",
       "settings": {},
       "blocks": {
         "logo_1": {
           "type": "logo",
           "settings": {
             "name": "Visa",
-            "fallback": "lh550-pay-visa.png",
+            "fallback": "lh510-pay-visa.png",
             "width": 100,
             "width_mobile": 64
           }
@@ -956,7 +936,7 @@
           "type": "logo",
           "settings": {
             "name": "Mastercard",
-            "fallback": "lh550-pay-mastercard.png",
+            "fallback": "lh510-pay-mastercard.png",
             "width": 100,
             "width_mobile": 54
           }
@@ -965,7 +945,7 @@
           "type": "logo",
           "settings": {
             "name": "RuPay",
-            "fallback": "lh550-pay-rupay.png",
+            "fallback": "lh510-pay-rupay.png",
             "width": 86,
             "width_mobile": 68
           }
@@ -974,7 +954,7 @@
           "type": "logo",
           "settings": {
             "name": "Paytm",
-            "fallback": "lh550-pay-paytm.png",
+            "fallback": "lh510-pay-paytm.png",
             "width": 102,
             "width_mobile": 66
           }
@@ -983,7 +963,7 @@
           "type": "logo",
           "settings": {
             "name": "Google Pay",
-            "fallback": "lh550-pay-gpay.png",
+            "fallback": "lh510-pay-gpay.png",
             "width": 100,
             "width_mobile": 66
           }
@@ -992,7 +972,7 @@
           "type": "logo",
           "settings": {
             "name": "PhonePe",
-            "fallback": "lh550-pay-phonepe.png",
+            "fallback": "lh510-pay-phonepe.png",
             "width": 76,
             "width_mobile": 50
           }

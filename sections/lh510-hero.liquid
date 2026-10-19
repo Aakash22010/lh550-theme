@@ -1,0 +1,91 @@
+{%- comment -%}
+  LH510 - Hero
+  Figma: "Hotel door lh510" desktop y132-749.
+  Rounded bedroom banner with gradient overlay, SMART HOTEL / DOOR LOCKS
+  headline, LH510 model + access icons + tagline, Buy Now / Add to Cart,
+  and the sticky Add to Cart bar on mobile.
+{%- endcomment -%}
+{% render 'lh510-assets' %}
+{{ 'lh510-hero.css' | asset_url | stylesheet_tag }}
+
+<section class="lh lh-section lh-hero" style="--pt:{{ section.settings.padding_top | default: 12 }};--ptm:{{ section.settings.padding_top_mobile | default: 17 }}">
+  <div class="lh-container">
+    <div class="lh-hero__media">
+      <div class="lh-hero__bg" aria-hidden="true">
+        {%- render 'lh510-image', image: section.settings.bg_image, fallback: 'lh510-hero.jpg', alt: '', class: 'lh-hero__img', loading: 'eager', width: 3000, height: 1500 -%}
+        <span class="lh-hero__shade"></span>
+      </div>
+
+      <div class="lh-hero__content">
+        <h1 class="lh-hero__title">
+          <span class="lh-hero__line lh-hero__line--peach">{{ section.settings.title_1 | default: 'SMART HOTEL' | escape }}</span>
+          <span class="lh-hero__line lh-hero__line--blue">{{ section.settings.title_2 | default: 'DOOR LOCKS' | escape }}</span>
+        </h1>
+
+        <div class="lh-hero__lockup">
+          <span class="lh-hero__model">{{ section.settings.model | default: 'LH510' | escape }}</span>
+          <span class="lh-hero__icons" aria-hidden="true">
+            <img src="{{ 'lh510-ic-bluetooth.png' | asset_url }}" alt="" width="78" height="78" loading="eager">
+            <img src="{{ 'lh510-ic-rfid.png' | asset_url }}" alt="" width="78" height="78" loading="eager">
+            <img src="{{ 'lh510-ic-key.png' | asset_url }}" alt="" width="78" height="78" loading="eager">
+          </span>
+        </div>
+        <p class="lh-hero__text">{{ section.settings.tagline | default: 'India’s Only Niche Specific Smart Door Lock' | escape }}</p>
+
+        <div class="lh-hero__cta">
+          {%- if section.settings.product != blank -%}
+            {%- assign hv = section.settings.product.selected_or_first_available_variant -%}
+            {%- capture buy_html -%}
+              <span>Buy Now @₹{{ hv.price | money_without_currency | remove: '.00' }}/-</span>
+              {%- if hv.compare_at_price > hv.price -%}
+                <s>₹{{ hv.compare_at_price | money_without_currency | remove: '.00' }}/-</s>
+              {%- endif -%}
+            {%- endcapture -%}
+            {% render 'lh510-buy-button', product: section.settings.product, action: 'buy', class: 'lh-btn lh-btn--primary lh-btn--sweep lh-hero__btn', content: buy_html %}
+            {%- capture add_html -%}<span>Add to Cart</span>{%- endcapture -%}
+            {% render 'lh510-buy-button', product: section.settings.product, action: 'add', class: 'lh-btn lh-btn--outline lh-hero__btn', content: add_html %}
+          {%- else -%}
+            <a class="lh-btn lh-btn--primary lh-btn--sweep lh-hero__btn" href="{{ section.settings.button_link | default: '/collections/all' }}">
+              <span>Buy Now @{{ section.settings.price_text | default: '₹5,200/-' }}</span>
+              <s>{{ section.settings.compare_text | default: '₹12,990/-' }}</s>
+            </a>
+            <a class="lh-btn lh-btn--outline lh-hero__btn" href="{{ section.settings.button_link | default: '/collections/all' }}"><span>Add to Cart</span></a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lh-hero__sticky-bar" aria-label="Quick Add to Cart">
+    <div class="lh-container lh-hero__sticky-inner">
+      {%- if section.settings.product != blank -%}
+        {%- capture add_html -%}<span>Add to Cart</span>{%- endcapture -%}
+        {% render 'lh510-buy-button', product: section.settings.product, action: 'add', class: 'lh-btn lh-btn--outline lh-hero__sticky-btn', content: add_html %}
+      {%- else -%}
+        <a class="lh-btn lh-btn--outline lh-hero__sticky-btn" href="{{ section.settings.button_link | default: '/collections/all' }}"><span>Add to Cart</span></a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "LH510 hero",
+  "tag": "div",
+  "class": "lh510-hero-section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product", "info": "Buy Now adds it and goes to checkout; Add to Cart stays on the page. Until a product is picked the fallback price below shows." },
+    { "type": "text", "id": "title_1", "label": "Headline line 1", "default": "SMART HOTEL" },
+    { "type": "text", "id": "title_2", "label": "Headline line 2", "default": "DOOR LOCKS" },
+    { "type": "text", "id": "model", "label": "Model", "default": "LH510" },
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "India’s Only Niche Specific Smart Door Lock" },
+    { "type": "text", "id": "price_text", "label": "Fallback price", "default": "₹5,200/-" },
+    { "type": "text", "id": "compare_text", "label": "Fallback compare price", "default": "₹12,990/-" },
+    { "type": "url", "id": "button_link", "label": "Fallback button link" },
+    { "type": "image_picker", "id": "bg_image", "label": "Banner photo", "info": "Leave empty to use the bedroom photo from the design." },
+    { "type": "range", "id": "padding_top", "label": "Top spacing (desktop, px)", "min": 0, "max": 120, "step": 2, "default": 12 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Top spacing (mobile, px)", "min": 0, "max": 100, "step": 1, "default": 17 }
+  ],
+  "presets": [{ "name": "LH510 hero" }]
+}
+{% endschema %}

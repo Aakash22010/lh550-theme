@@ -11,16 +11,16 @@
   "type": "footer",
   "name": "t:names.footer",
   "sections": {
-    "lh550_footer": {
-      "type": "lh550-footer",
+    "lh510_footer": {
+      "type": "lh510-footer",
       "settings": {},
       "blocks": {
-        "logo_1": { "type": "logo", "settings": { "name": "Visa", "fallback": "lh550-pay-visa.png", "width": 100, "width_mobile": 64 } },
-        "logo_2": { "type": "logo", "settings": { "name": "Mastercard", "fallback": "lh550-pay-mastercard.png", "width": 100, "width_mobile": 54 } },
-        "logo_3": { "type": "logo", "settings": { "name": "RuPay", "fallback": "lh550-pay-rupay.png", "width": 86, "width_mobile": 68 } },
-        "logo_4": { "type": "logo", "settings": { "name": "Paytm", "fallback": "lh550-pay-paytm.png", "width": 102, "width_mobile": 66 } },
-        "logo_5": { "type": "logo", "settings": { "name": "Google Pay", "fallback": "lh550-pay-gpay.png", "width": 100, "width_mobile": 66 } },
-        "logo_6": { "type": "logo", "settings": { "name": "PhonePe", "fallback": "lh550-pay-phonepe.png", "width": 76, "width_mobile": 50 } }
+        "logo_1": { "type": "logo", "settings": { "name": "Visa", "fallback": "lh510-pay-visa.png", "width": 100, "width_mobile": 64 } },
+        "logo_2": { "type": "logo", "settings": { "name": "Mastercard", "fallback": "lh510-pay-mastercard.png", "width": 100, "width_mobile": 54 } },
+        "logo_3": { "type": "logo", "settings": { "name": "RuPay", "fallback": "lh510-pay-rupay.png", "width": 86, "width_mobile": 68 } },
+        "logo_4": { "type": "logo", "settings": { "name": "Paytm", "fallback": "lh510-pay-paytm.png", "width": 102, "width_mobile": 66 } },
+        "logo_5": { "type": "logo", "settings": { "name": "Google Pay", "fallback": "lh510-pay-gpay.png", "width": 100, "width_mobile": 66 } },
+        "logo_6": { "type": "logo", "settings": { "name": "PhonePe", "fallback": "lh510-pay-phonepe.png", "width": 76, "width_mobile": 50 } }
       },
       "block_order": ["logo_1", "logo_2", "logo_3", "logo_4", "logo_5", "logo_6"]
     },
@@ -208,7 +208,7 @@
     }
   },
   "order": [
-    "lh550_footer",
+    "lh510_footer",
     "footer_m9NzUG",
     "footer_utilities_jLGE8U"
   ]
