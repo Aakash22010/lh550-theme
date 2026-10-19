@@ -32,14 +32,14 @@
         <div class="lh-access__ring">
           <div class="lh-access__photos" aria-hidden="true">
             <span class="lh-access__shot">
-              {%- render 'lh510-image', image: s.room_image, fallback: 'lh510-access-room.png', alt: '', class: 'lh-access__photo', width: 1535, height: 1024 -%}
+              {%- render 'lh510-image', image: s.room_image, fallback: 'lh510-access-room.png', alt: '', class: 'lh-access__photo', sizes: '340px', width: 1538, height: 1023 -%}
             </span>
             {%- assign idx = 0 -%}
             {%- for block in section.blocks -%}
               {%- if block.type == 'unlock' -%}
-                {%- if block.settings.image != blank -%}
+                {%- if block.settings.image != blank or block.settings.fallback != blank -%}
                   <span class="lh-access__shot lh-access__shot--state{% if idx == start_index %} is-active{% endif %}" data-lh-shot="{{ idx }}">
-                    {{- block.settings.image | image_url: width: 900 | image_tag: class: 'lh-access__photo', alt: '', loading: 'lazy', widths: '450, 900' -}}
+                    {%- render 'lh510-image', image: block.settings.image, fallback: block.settings.fallback, alt: '', class: 'lh-access__photo', sizes: '340px', width: 1536, height: 1024 -%}
                   </span>
                 {%- endif -%}
                 {%- assign idx = idx | plus: 1 -%}
@@ -422,6 +422,11 @@ Request a Call Back{%- endcapture -%}
           "info": "Fades into the round photo when this card is open. Leave empty for Mobile to use the room photo above."
         },
         {
+          "type": "text",
+          "id": "fallback",
+          "label": "Bundled image (used when no image is picked)"
+        },
+        {
           "type": "checkbox",
           "id": "active",
           "label": "Open first",
@@ -449,6 +454,7 @@ Request a Call Back{%- endcapture -%}
             "title": "RFID Unlock",
             "text": "Can unlock hotel door lock with RFID card access.",
             "icon": "rfid",
+            "fallback": "lh510-access-rfid.png",
             "active": false
           }
         },
@@ -458,6 +464,7 @@ Request a Call Back{%- endcapture -%}
             "title": "Manual Key Unlock",
             "text": "Can unlock hotel door lock with manual key access.",
             "icon": "key",
+            "fallback": "lh510-access-key.png",
             "active": false
           }
         }

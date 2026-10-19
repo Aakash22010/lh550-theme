@@ -34,6 +34,7 @@
             "title": "RFID Unlock",
             "text": "Can unlock hotel door lock with RFID card access.",
             "icon": "rfid",
+            "fallback": "lh510-access-rfid.png",
             "active": false
           }
         },
@@ -43,6 +44,7 @@
             "title": "Manual Key Unlock",
             "text": "Can unlock hotel door lock with manual key access.",
             "icon": "key",
+            "fallback": "lh510-access-key.png",
             "active": false
           }
         }
