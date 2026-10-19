@@ -892,7 +892,7 @@
         "reason_2": {
           "type": "reason",
           "settings": {
-            "text": "Fastest Delivery Across India, Right to Your Doorstep.",
+            "text": "Fastest Delivery Across India, Right to Your Doorstep",
             "fallback": "lh510-why-fast.png",
             "icon_alt": "Fast delivery icon"
           }
@@ -908,7 +908,7 @@
         "reason_4": {
           "type": "reason",
           "settings": {
-            "text": "Trusted by Over 1.5 Million Satisfied Customer",
+            "text": "Trusted by Over 1.5 Million Satisfied Customers",
             "fallback": "lh510-why-like.png",
             "icon_alt": "Thumbs up icon"
           }
@@ -917,8 +917,8 @@
       "block_order": [
         "reason_1",
         "reason_2",
-        "reason_3",
-        "reason_4"
+        "reason_4",
+        "reason_3"
       ]
     },
     "footer": {

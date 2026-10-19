@@ -27,6 +27,35 @@
   </ol>
 </section>
 
+<script>
+  (function () {
+    /* Desktop: the cards slide into the stack one after another the first time it comes into view (lh510-why.css) */
+    function setup(root) {
+      if (!root || root.getAttribute('data-lh-ready')) return;
+      root.setAttribute('data-lh-ready', '1');
+      var stack = root.querySelector('.lh-why__cards');
+      var desktop = window.matchMedia('(min-width: 900px)').matches;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!stack || !desktop || reduce || !('IntersectionObserver' in window)) return;
+      root.classList.add('is-armed');
+      var io = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        root.classList.add('is-in');
+      }, { threshold: 0.35 });
+      io.observe(stack);
+    }
+
+    function boot() {
+      var list = document.querySelectorAll('.lh-why');
+      for (var i = 0; i < list.length; i++) setup(list[i]);
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+    else boot();
+    document.addEventListener('shopify:section:load', boot);
+  })();
+</script>
+
 {% schema %}
 {
   "name": "LH510 why",
@@ -55,9 +84,9 @@
       "name": "LH510 why",
       "blocks": [
         { "type": "reason", "settings": { "text": "India’s Only Niche Brand in the Smart Lock Industry", "fallback": "lh510-why-best.png", "icon_alt": "Award badge icon" } },
-        { "type": "reason", "settings": { "text": "Fastest Delivery Across India, Right to Your Doorstep.", "fallback": "lh510-why-fast.png", "icon_alt": "Fast delivery icon" } },
-        { "type": "reason", "settings": { "text": "Installation & Support Across 25+ Cities", "fallback": "lh510-why-tools.png", "icon_alt": "Installation tools icon" } },
-        { "type": "reason", "settings": { "text": "Trusted by Over 1.5 Million Satisfied Customer", "fallback": "lh510-why-like.png", "icon_alt": "Thumbs up icon" } }
+        { "type": "reason", "settings": { "text": "Fastest Delivery Across India, Right to Your Doorstep", "fallback": "lh510-why-fast.png", "icon_alt": "Fast delivery icon" } },
+        { "type": "reason", "settings": { "text": "Trusted by Over 1.5 Million Satisfied Customers", "fallback": "lh510-why-like.png", "icon_alt": "Thumbs up icon" } },
+        { "type": "reason", "settings": { "text": "Installation & Support Across 25+ Cities", "fallback": "lh510-why-tools.png", "icon_alt": "Installation tools icon" } }
       ]
     }
   ]

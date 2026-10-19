@@ -34,6 +34,19 @@
 .lh-why .lh-why__icon{ width: calc(6.1 * var(--lh-u)); height: calc(5.2 * var(--lh-u)); object-fit: contain; object-position: left center; }
 .lh-why .lh-why__text{ font: 500 calc(2 * var(--lh-u))/calc(2.4 * var(--lh-u)) var(--lh-font); color: var(--lh-ink-2); }
 
+/* Figma prototype (desktop): cards 2..n wait 430 / 450 / 470 below their place, invisible, then slide up and fade in
+   one after another - 0.4s linear each, 0.25s apart - the first time the stack comes into view. The script in
+   sections/lh510-why.liquid arms it, so without JS or with reduced motion the finished stack shows. */
+@media (min-width: 900px) {
+  .lh-why.is-armed .lh-why__card + .lh-why__card{
+    opacity: 0; transform: translateY(calc((41 + 2 * var(--i)) * var(--lh-u))); pointer-events: none;
+  }
+  .lh-why.is-armed.is-in .lh-why__card + .lh-why__card{
+    opacity: 1; transform: none; pointer-events: auto;
+    transition: opacity 0.4s linear, transform 0.4s linear; transition-delay: calc((var(--i) - 1) * 0.65s);
+  }
+}
+
 /* Mobile - 2x2 grid of solid alternating colours (blue, peach / peach, blue) */
 @media (max-width: 899px) {
   .lh-why .lh-why__title{ text-align: left; font-weight: 600; font-size: calc(2.4 * var(--lh-u)); line-height: calc(2.9 * var(--lh-u)); padding-left: calc(0.2 * var(--lh-u)); }
