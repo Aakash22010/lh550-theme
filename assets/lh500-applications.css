@@ -1,0 +1,103 @@
+/* LH500 applications */
+.lh-apps .lh-apps__container {
+  --edge: max(var(--lh-gutter), (100vw - var(--lh-max)) / 2);
+  display: grid;
+  grid-template-columns: calc(42.7 * var(--lh-u)) minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  column-gap: calc(3.1 * var(--lh-u));
+  align-items: start;
+}
+
+.lh-apps .lh-apps__title {
+  grid-column: 2;
+  grid-row: 1;
+  font: 500 calc(3.6 * var(--lh-u))/calc(4.4 * var(--lh-u)) var(--lh-font);
+  color: #000;
+  margin: calc(1.7 * var(--lh-u)) 0 calc(6 * var(--lh-u));
+}
+
+.lh-apps .lh-apps__door {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  aspect-ratio: 534 / 834;
+}
+
+.lh-apps .lh-apps__door-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* cards run to the edge of the screen and scroll freely */
+.lh-apps .lh-apps__cards-wrap {
+  grid-column: 2;
+  grid-row: 2;
+  min-width: 0;
+  margin-inline-end: calc(-1 * var(--edge));
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.lh-apps .lh-apps__cards-wrap::-webkit-scrollbar { display: none; }
+
+.lh-apps .lh-apps__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(31.2 * var(--lh-u));
+  grid-template-rows: auto auto;
+  gap: calc(1.6 * var(--lh-u));
+  width: max-content;
+  padding-inline-end: var(--edge);
+}
+
+.lh-apps .lh-apps__card { min-width: 0; grid-column: var(--col); }
+.lh-apps .lh-apps__card--row-1 { grid-row: 1; }
+.lh-apps .lh-apps__card--row-2 { grid-row: 2; }
+
+.lh-apps .lh-apps__img {
+  width: 100%;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* only for uploaded images, the bundled ones already have the label */
+.lh-apps .lh-apps__name {
+  font: 400 calc(2.4 * var(--lh-u))/1.2 var(--lh-font);
+  color: #000;
+  margin-top: calc(0.8 * var(--lh-u));
+}
+
+@media (max-width: 899px) {
+  .lh-apps .lh-apps__container {
+    grid-template-columns: calc(18.5 * var(--lh-u)) minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: calc(1.4 * var(--lh-u));
+    row-gap: calc(2 * var(--lh-u));
+  }
+
+  .lh-apps .lh-apps__title {
+    grid-column: 1 / -1;
+    max-width: calc(33 * var(--lh-u));
+    font-size: calc(2.4 * var(--lh-u));
+    font-weight: 600;
+    line-height: 1.2;
+    text-transform: capitalize;
+    margin: 0;
+  }
+
+  .lh-apps .lh-apps__door { grid-row: 2; }
+
+  .lh-apps .lh-apps__cards-wrap { align-self: center; }
+
+  .lh-apps .lh-apps__track {
+    grid-auto-columns: calc(15.5 * var(--lh-u));
+    column-gap: calc(0.8 * var(--lh-u));
+    row-gap: calc(1 * var(--lh-u));
+  }
+
+  .lh-apps .lh-apps__name {
+    font-size: calc(1.2 * var(--lh-u));
+    margin-top: calc(0.4 * var(--lh-u));
+  }
+}

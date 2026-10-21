@@ -1,12 +1,10 @@
-# Only track the LH510 files; the stock Horizon theme files stay out of the repo.
+# only the LH500 files are tracked, the Horizon base theme stays out of the repo
 *
 !*/
 !.gitignore
 !README.md
-!assets/lh510*
-!sections/lh510-*
-!sections/header-group.json
-!sections/footer-group.json
-!snippets/lh510-*
-!layout/lh510.liquid
-!templates/index.json
+!assets/lh500*
+!sections/lh500-*
+!snippets/lh500-*
+!layout/lh500.liquid
+!templates/page.lh500.json

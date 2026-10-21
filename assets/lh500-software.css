@@ -1,0 +1,105 @@
+/* LH500 software */
+
+/* sized in cqw so the headings stay put around the devices image */
+.lh-software .lh-software__inner{ position: relative; container-type: inline-size; }
+
+.lh-software .lh-software__head{
+  position: relative; display: flex; justify-content: space-between; align-items: flex-start;
+  min-height: 17.262cqw; padding-top: 5.357cqw;
+}
+.lh-software .lh-software__title{
+  position: relative; z-index: 3;
+  font: 600 4.613cqw/0.984 var(--lh-font-alt); color: var(--lh-blue); text-transform: capitalize;
+}
+.lh-software .lh-software__title--left{ width: 30.21cqw; margin-left: 0.3cqw; }
+.lh-software .lh-software__title--right{ width: 32.74cqw; margin-top: 0.07cqw; text-align: right; }
+
+/* devices image overlaps the headings and the panel */
+.lh-software .lh-software__devices{ position: absolute; z-index: 2; top: 0; left: 23.21%; width: 49.55%; pointer-events: none; }
+.lh-software .lh-software__devices-img{ width: 100%; height: auto; }
+
+/* panel + 4 cards */
+.lh-software .lh-software__panel{ position: relative; z-index: 1; border-radius: calc(3.2 * var(--lh-u)); padding: calc(13.3 * var(--lh-u)) calc(6.2 * var(--lh-u)) calc(5.3 * var(--lh-u)); }
+.lh-software .lh-software__grid{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: calc(2.4 * var(--lh-u)); }
+
+/* card */
+.lh-software .lh-software__card{
+  display: flex; flex-direction: column; padding-bottom: calc(0.2 * var(--lh-u));
+  background: rgba(255, 255, 255, 0.56); border-radius: calc(2.2 * var(--lh-u)); box-shadow: var(--lh-card-shadow);
+}
+.lh-software .lh-software__card-title{
+  display: flex; align-items: center; justify-content: center; min-height: calc(9.6 * var(--lh-u)); padding: calc(0.6 * var(--lh-u)) calc(3.9 * var(--lh-u));
+  font: 700 calc(2.3 * var(--lh-u))/calc(2.5 * var(--lh-u)) var(--lh-font-alt); color: var(--lh-blue); text-transform: uppercase; text-align: center;
+}
+.lh-software .lh-software__card-text{
+  flex: 1; display: flex; align-items: center; justify-content: center; min-height: calc(8.8 * var(--lh-u)); padding: calc(0.6 * var(--lh-u)) calc(1.8 * var(--lh-u));
+  background: rgba(255, 255, 255, 0.76); border-radius: calc(2.2 * var(--lh-u));
+  font: 400 calc(1.6 * var(--lh-u))/calc(1.875 * var(--lh-u)) var(--lh-font-alt); color: #000; text-align: center; text-transform: capitalize;
+}
+
+/* What More You Can Do carousel */
+.lh-software .lh-software__more{ margin-top: calc(4.8 * var(--lh-u)); }
+.lh-software .lh-software__more-title{ font: 500 calc(3.6 * var(--lh-u))/1.2 var(--lh-font); color: #000; }
+.lh-software .lh-software__more-grid{
+  display: flex; flex-wrap: nowrap;
+  gap: calc(2.4 * var(--lh-u)); margin-top: calc(2.8 * var(--lh-u));
+  overflow-x: auto; scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  margin-right: calc(-1 * max(var(--lh-gutter), (100vw - var(--lh-max)) / 2));
+  padding-right: max(var(--lh-gutter), calc((100vw - var(--lh-max)) / 2));
+  padding-bottom: calc(0.4 * var(--lh-u));
+}
+.lh-software .lh-software__more-grid::-webkit-scrollbar{ display: none; }
+.lh-software .lh-software__more-card{
+  position: relative; flex: 0 0 calc(63.4 * var(--lh-u));
+  width: calc(63.4 * var(--lh-u)); height: calc(42 * var(--lh-u)); min-height: calc(42 * var(--lh-u));
+  display: flex; align-items: flex-end; justify-content: center;
+  overflow: hidden; background: #d9d9d9; border-radius: calc(3 * var(--lh-u));
+  isolation: isolate;
+}
+.lh-software .lh-software__more-img{
+  position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover;
+  pointer-events: none; -webkit-user-drag: none;
+}
+.lh-software .lh-software__more-card::after{
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.72) 100%);
+}
+.lh-software .lh-software__more-text{
+  padding: 0 calc(3.6 * var(--lh-u)) calc(3.6 * var(--lh-u));
+  font: 600 calc(2.4 * var(--lh-u))/calc(2.9 * var(--lh-u)) var(--lh-font); color: #fff; text-align: center;
+  user-select: none;
+}
+
+/* mobile: devices on top, headings inside the panel, 2x2 cards */
+@media (max-width: 899px) {
+  .lh-software .lh-software__inner{ max-width: calc(40.2 * var(--lh-u)); }
+  .lh-software .lh-software__head{ display: block; min-height: 0; padding-top: calc(16.2 * var(--lh-u)); }
+  .lh-software .lh-software__title{ font-size: calc(2.6 * var(--lh-u)); line-height: calc(3.7 * var(--lh-u)); }
+  .lh-software .lh-software__title--left{ width: auto; margin: 0; padding-left: calc(1.4 * var(--lh-u)); }
+  .lh-software .lh-software__title--right{ width: auto; margin: 0; padding-right: var(--lh-u); line-height: calc(4.6 * var(--lh-u)); }
+  .lh-software .lh-software__devices{ left: 5.52%; width: 93.92%; }
+
+  .lh-software .lh-software__panel{ margin-top: calc(-15.6 * var(--lh-u)); padding: calc(18 * var(--lh-u)) calc(1.7 * var(--lh-u)) calc(2.7 * var(--lh-u)); border-radius: calc(3.6 * var(--lh-u)); }
+  .lh-software .lh-software__grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: calc(1.9 * var(--lh-u)); row-gap: calc(1.5 * var(--lh-u)); }
+  .lh-software .lh-software__card{ padding-bottom: 0; background: rgba(244, 244, 244, 0.56); }
+  .lh-software .lh-software__card-title{ min-height: calc(5.5 * var(--lh-u)); padding: calc(0.6 * var(--lh-u)) calc(2.5 * var(--lh-u)); font-size: calc(1.2 * var(--lh-u)); line-height: calc(1.2 * var(--lh-u)); }
+  .lh-software .lh-software__card-text{ min-height: calc(7.4 * var(--lh-u)); padding: calc(0.8 * var(--lh-u)) calc(1.2 * var(--lh-u)); font-weight: 500; font-size: var(--lh-u); line-height: calc(1.172 * var(--lh-u)); }
+
+  .lh-software .lh-software__more{ margin-top: calc(3.2 * var(--lh-u)); }
+  .lh-software .lh-software__more-title{ font-size: calc(2.4 * var(--lh-u)); line-height: calc(2.9 * var(--lh-u)); }
+  .lh-software .lh-software__more-grid{
+    gap: calc(1.4 * var(--lh-u)); margin-top: calc(2 * var(--lh-u));
+    margin-right: calc(-1 * var(--lh-gutter));
+    padding-right: var(--lh-gutter);
+  }
+  .lh-software .lh-software__more-card{
+    flex: 0 0 calc(33 * var(--lh-u)); width: calc(33 * var(--lh-u));
+    height: calc(28 * var(--lh-u)); min-height: calc(28 * var(--lh-u));
+    border-radius: calc(2.4 * var(--lh-u));
+  }
+  .lh-software .lh-software__more-text{
+    padding: 0 calc(2 * var(--lh-u)) calc(2.4 * var(--lh-u));
+    font-size: calc(1.8 * var(--lh-u)); line-height: calc(2.2 * var(--lh-u));
+  }
+}

@@ -1,0 +1,272 @@
+
+
+/* spacing between the two parts */
+.lh-access .lh-access__band--callback{ margin-top: calc(9.2 * var(--lh-u)); }
+
+/* access options. the script sets --active, each icon/card has its own --i,
+   so --d = --i - --active is its slot (0 open, 1 next, -1 previous) */
+.lh-access .lh-access__band--options{
+  --ring: calc(42.5 * var(--lh-u));   /* everything in the ring scales off this */
+  --slot: calc(16.8 * var(--lh-u));   /* gap between cards */
+  --dur: 4s;
+  --ease: cubic-bezier(0.65, 0, 0.35, 1);
+  display: grid; grid-template-columns: var(--ring) minmax(0, 1fr);
+  gap: calc(6.6 * var(--lh-u)); align-items: start;
+}
+.lh-access .lh-access__media{ display: grid; justify-items: center; }
+.lh-access .lh-access__ring{
+  position: relative; display: grid; place-items: center;
+  width: var(--ring); height: var(--ring);
+  border: calc(0.1 * var(--lh-u)) solid var(--lh-border); border-radius: 50%;
+  background: #fff;
+}
+.lh-access .lh-access__photos{
+  position: relative; overflow: hidden; border-radius: 50%; background: #d9d9d9;
+  width: calc(var(--ring) * 0.784); height: calc(var(--ring) * 0.784);
+}
+.lh-access .lh-access__shot{ position: absolute; inset: 0; display: block; }
+.lh-access .lh-access__shot--state{ opacity: 0; transition: opacity var(--dur) var(--ease); }
+.lh-access .lh-access__shot--state.is-active{ opacity: 1; }
+.lh-access .lh-access__photo{ display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
+/* icon wrapper, the box only shows on mobile */
+.lh-access .lh-access__nodes{ display: contents; }
+.lh-access .lh-access__frame{ display: none; }
+
+/* icons sit on the ring and stay upright while it turns */
+.lh-access .lh-access__node{
+  --d: calc(var(--i) - var(--active));
+  --a: calc(var(--d) * -45deg);
+  --s: 0.8;
+  --node: calc(var(--ring) * 0.1435);
+  position: absolute; left: 50%; top: 50%; z-index: 1;
+  width: var(--node); height: var(--node);
+  margin: calc(var(--node) / -2) 0 0 calc(var(--node) / -2);
+  display: grid; place-items: center; padding: 0; cursor: pointer;
+  border-radius: 50%; background: #fff; border: calc(0.1 * var(--lh-u)) solid #d4d4d4;
+  transform: rotate(var(--a)) translateX(calc(var(--ring) / 2)) rotate(calc(var(--a) * -1)) scale(var(--s));
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.lh-access .lh-access__node img{
+  width: 77%; height: 77%; object-fit: contain; opacity: 0.55;
+  transition: opacity var(--dur) var(--ease);
+}
+.lh-access .lh-access__node.is-active{ --s: 1; border-color: var(--lh-blue); }
+.lh-access .lh-access__node.is-active img{ opacity: 1; }
+.lh-access .lh-access__node:focus-visible{ outline: calc(0.2 * var(--lh-u)) solid var(--lh-blue); outline-offset: calc(0.3 * var(--lh-u)); }
+
+.lh-access .lh-access__options{ padding-top: calc(3.5 * var(--lh-u)); }
+.lh-access .lh-access__title{
+  position: relative; z-index: 2;
+  padding-left: calc(1 * var(--lh-u)); text-align: left;
+  font: 500 calc(3.6 * var(--lh-u))/1.2 var(--lh-font); color: #000;
+}
+
+/* open card + the next one faded below it */
+.lh-access .lh-access__cards{
+  --pad: calc(5 * var(--lh-u));   /* room for the card sliding out */
+  --side: calc(2 * var(--lh-u));  /* room for the card shadow */
+  position: relative; overflow: hidden;
+  max-width: calc(45.9 * var(--lh-u) + 2 * var(--side));
+  height: calc(var(--pad) + var(--slot) + 2.3 * var(--lh-u));
+  margin: calc(9.2 * var(--lh-u) - var(--pad)) calc(-1 * var(--side)) 0;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 21%, #000 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 21%, #000 80%, transparent 100%);
+}
+.lh-access .lh-access__card{
+  --d: calc(var(--i) - var(--active));
+  position: absolute; left: var(--side); right: var(--side); top: var(--pad);
+  background: #fff; border-radius: calc(1.6 * var(--lh-u));
+  box-shadow: var(--lh-card-shadow);
+  padding: calc(1 * var(--lh-u)) calc(2 * var(--lh-u)) calc(1 * var(--lh-u)) calc(2.8 * var(--lh-u));
+  min-height: calc(9 * var(--lh-u)); display: flex; align-items: center;
+  transform: translateY(calc(var(--d) * var(--slot)));
+  opacity: 0; pointer-events: none; cursor: pointer;
+  transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+.lh-access .lh-access__card.is-active{ opacity: 1; pointer-events: auto; }
+.lh-access .lh-access__card.is-next{ opacity: 0.4; pointer-events: auto; }
+.lh-access .lh-access__card-title{
+  font: 400 calc(2.8 * var(--lh-u))/1.2 var(--lh-font); color: #000;
+  transition: color var(--dur) var(--ease);
+}
+.lh-access .lh-access__card.is-active .lh-access__card-title{
+  font-weight: 600; color: var(--lh-blue);
+}
+.lh-access .lh-access__card-text{
+  margin-top: calc(0.6 * var(--lh-u));
+  font: 400 calc(1.6 * var(--lh-u))/1.4 var(--lh-font); color: #000;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .lh-access .lh-access__node, .lh-access .lh-access__node img,
+  .lh-access .lh-access__shot--state, .lh-access .lh-access__card,
+  .lh-access .lh-access__card-title{ transition-duration: 0.01s; }
+}
+
+/* callback form */
+.lh-access .lh-access__panel{
+  display: grid; grid-template-columns: minmax(0, 1fr) calc(50.2 * var(--lh-u));
+  gap: calc(3.4 * var(--lh-u)); align-items: center;
+  padding: calc(4.4 * var(--lh-u)) calc(11.6 * var(--lh-u)) calc(4.4 * var(--lh-u)) calc(4.4 * var(--lh-u));
+  background: linear-gradient(180deg, rgba(175, 215, 240, 0.12) 0%, rgba(244, 194, 177, 0.12) 100%);
+  border: calc(0.1 * var(--lh-u)) solid var(--lh-border);
+  border-radius: calc(3.6 * var(--lh-u));
+}
+.lh-access .lh-access__callback-media{
+  border-radius: calc(3 * var(--lh-u)); overflow: hidden;
+  width: calc(59.2 * var(--lh-u)); max-width: 100%; justify-self: center;
+}
+.lh-access .lh-access__callback-img{ display: block; width: 100%; height: auto; object-fit: contain; }
+.lh-access .lh-access__callback-img--mobile{ display: none; }   /* mobile only photo */
+
+.lh-access .lh-access__form-card{
+  background: #fff; border: calc(0.1 * var(--lh-u)) solid var(--lh-border);
+  border-radius: calc(3.6 * var(--lh-u));
+  padding: calc(4.75 * var(--lh-u)) calc(4.75 * var(--lh-u)) calc(4.7 * var(--lh-u));
+}
+/* first line bold, second regular */
+.lh-access .lh-access__form-title{
+  text-align: left; color: #000;
+  font: 400 calc(2.6 * var(--lh-u))/1.35 var(--lh-font);
+}
+.lh-access .lh-access__form-title-main{ display: block; font-weight: 700; }
+.lh-access .lh-access__form-title-sub{ display: block; font-weight: 400; }
+
+.lh-access .lh-access__form{
+  display: flex; flex-direction: column; gap: calc(3 * var(--lh-u));
+  margin-top: calc(2.4 * var(--lh-u));
+}
+.lh-access .lh-access__field{ display: flex; flex-direction: column; gap: calc(1 * var(--lh-u)); }
+.lh-access .lh-access__label{
+  font: 500 calc(1.7 * var(--lh-u))/1.3 var(--lh-font); color: #000;
+}
+.lh-access .lh-access__req{ color: #e60000; margin-left: 0.25em; }
+.lh-access .lh-access__input{
+  width: 100%; height: calc(4.1 * var(--lh-u)); padding: 0 calc(1.1 * var(--lh-u));
+  border: calc(0.1 * var(--lh-u)) solid var(--lh-border); border-radius: calc(1 * var(--lh-u));
+  font: 400 calc(1.3 * var(--lh-u))/1.3 var(--lh-font); color: var(--lh-ink); background: #fff;
+}
+.lh-access .lh-access__input::placeholder{ color: #bdbdbd; opacity: 1; }
+.lh-access .lh-access__submit{
+  align-self: center; width: auto;
+  min-width: calc(17.1 * var(--lh-u)); min-height: calc(3.8 * var(--lh-u));
+  padding: 0 calc(2 * var(--lh-u)); font-size: calc(1.6 * var(--lh-u));
+  margin-top: calc(-0.6 * var(--lh-u));
+}
+.lh-access .lh-access__faster{
+  margin: calc(3.7 * var(--lh-u)) 0 0; text-align: center;
+  font: 400 calc(1.45 * var(--lh-u))/1.4 var(--lh-font); color: #666;
+}
+.lh-access .lh-access__contact{
+  display: flex; justify-content: center; gap: calc(6 * var(--lh-u));
+  margin-top: calc(1.8 * var(--lh-u));
+}
+.lh-access .lh-access__contact-link{
+  display: block; width: calc(4.9 * var(--lh-u)); height: calc(4.9 * var(--lh-u));
+}
+.lh-access .lh-access__contact-link svg{ display: block; width: 100%; height: 100%; }
+
+/* mobile */
+@media (max-width: 899px) {
+  /* one box with the icon row and the open card. no photo, no rotation,
+     tapping an icon swaps the card */
+  .lh-access .lh-access__band--options{
+    --mu-div: 36.2;
+    container-type: inline-size;
+    grid-template-columns: minmax(0, 1fr); gap: 0; justify-items: stretch; align-items: start;
+  }
+  .lh-access .lh-access__media,
+  .lh-access .lh-access__ring,
+  .lh-access .lh-access__options{ display: contents; }
+  .lh-access .lh-access__photos{ display: none; }
+  .lh-access .lh-access__title,
+  .lh-access .lh-access__frame,
+  .lh-access .lh-access__nodes,
+  .lh-access .lh-access__cards{ --mu: calc(100cqw / var(--mu-div)); }
+
+  .lh-access .lh-access__title{
+    grid-row: 1; margin: 0 0 calc(1.4 * var(--mu)); padding: 0; text-align: center;
+    font-size: calc(2.3 * var(--mu)); font-weight: 600;
+  }
+
+  .lh-access .lh-access__frame{
+    display: block; grid-row: 2 / span 2; grid-column: 1; align-self: stretch;
+    border: calc(0.1 * var(--lh-u)) solid var(--lh-border); border-radius: calc(2 * var(--mu)); background: #fff;
+  }
+
+  /* active icon is white with a blue ring */
+  .lh-access .lh-access__nodes{
+    display: flex; justify-content: center; gap: calc(3 * var(--mu));
+    grid-row: 2; grid-column: 1; position: relative; z-index: 1;
+    margin-top: calc(2.15 * var(--mu));
+  }
+  .lh-access .lh-access__node{
+    position: relative; left: auto; top: auto; margin: 0; flex: none; transform: none;
+    width: calc(5.9 * var(--mu)); height: calc(5.9 * var(--mu));
+    background: #f1f1f1; border: calc(0.2 * var(--mu)) solid transparent;
+    transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  }
+  .lh-access .lh-access__node img{ width: 82%; height: 82%; }
+  .lh-access .lh-access__node.is-active{ background: #fff; border-color: var(--lh-blue); }
+
+  /* only the open card is visible */
+  .lh-access .lh-access__cards{
+    --pad: calc(1.2 * var(--mu));
+    --side: calc(1.2 * var(--mu));
+    --win: calc(12.6 * var(--mu));
+    --slot: var(--win);
+    grid-row: 3; grid-column: 1; position: relative; z-index: 1;
+    max-width: none; height: var(--win);
+    margin: calc(2.2 * var(--mu)) calc(0.8 * var(--mu)) calc(2.4 * var(--mu));
+    -webkit-mask-image: none; mask-image: none;
+  }
+  .lh-access .lh-access__card{
+    padding: calc(1.2 * var(--mu)) calc(2 * var(--mu)) calc(1.2 * var(--mu)) calc(2.9 * var(--mu));
+    min-height: calc(9 * var(--mu)); border-radius: calc(1.6 * var(--mu));
+  }
+  .lh-access .lh-access__card.is-next{ opacity: 0; pointer-events: none; }
+  .lh-access .lh-access__card-title{ font-size: calc(2.25 * var(--mu)); }
+  .lh-access .lh-access__card-text{ margin-top: calc(0.7 * var(--mu)); font-size: calc(1.5 * var(--mu)); }
+
+  /* no inner card on mobile, sizes in cqw */
+  .lh-access .lh-access__band--callback{
+    margin-top: calc(4.5 * var(--lh-u));
+    max-width: 560px; margin-left: auto; margin-right: auto;
+    container-type: inline-size;
+  }
+  .lh-access .lh-access__panel{ position: relative; display: block; padding: 0; border-radius: 10cqw; background: #fff; }
+  .lh-access .lh-access__callback-media{
+    position: absolute; z-index: 1; top: 2cqw; right: 3cqw; width: 26cqw; /* reuses the desktop photo */
+    border-radius: 0; overflow: visible; pointer-events: none;
+  }
+  /* separate mobile photo */
+  .lh-access .lh-access__callback-media.has-mobile{ top: 3.1cqw; right: 3.1cqw; width: 31.5cqw; }
+  .lh-access .has-mobile .lh-access__callback-img--desktop{ display: none; }
+  .lh-access .has-mobile .lh-access__callback-img--mobile{ display: block; }
+  .lh-access .lh-access__form-card{
+    background: transparent; border: 0; border-radius: 0; box-shadow: none;
+    padding: 7cqw 6.4cqw 6.7cqw;
+  }
+  .lh-access .lh-access__form-title{ font-size: 4.05cqw; line-height: 1.26; max-width: 56cqw; }
+  .lh-access .lh-access__form{ gap: 3.7cqw; margin-top: 7.3cqw; }
+  .lh-access .lh-access__field{ gap: 3.5cqw; }
+  .lh-access .lh-access__label{ font-size: 4.1cqw; }
+  .lh-access .lh-access__input{
+    height: 11.3cqw; padding: 0 2.9cqw; border-radius: 2.4cqw;
+    font-size: 16px;                         /* 16px stops iOS zooming in on focus */
+  }
+  .lh-access .lh-access__input::placeholder{ font-size: 3.5cqw; }
+  .lh-access .lh-access__submit{ min-width: 47cqw; min-height: 10.5cqw; font-size: 4.3cqw; margin-top: 3.3cqw; }
+  .lh-access .lh-access__faster{ margin-top: 7.6cqw; font-size: 3.05cqw; }
+  .lh-access .lh-access__contact{ gap: 8.7cqw; margin-top: 5.5cqw; }
+  .lh-access .lh-access__contact-link{ width: 9.4cqw; height: 9.4cqw; }
+}
+
+/* tablet */
+@media (min-width: 600px) and (max-width: 899px) {
+  .lh-access .lh-access__band--options{ --mu-div: 47; }
+}
+
+/* clicks and wheel steps switch in 0.9s instead of 4s (.is-quick, set by the script) */
+.lh-access .lh-access__band--options.is-quick{ --dur: 0.9s; }

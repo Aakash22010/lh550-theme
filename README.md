@@ -1,30 +1,35 @@
-# LAVNA LH510 - Hotel Smart Lock page
+# LAVNA LH500 - Hotel Smart Lock page
 
-Shopify sections for the LH510 hotel smart lock landing page, built from the Figma design
-"Hotel door lh510" (Lavna Locks UI, desktop + mobile). Horizon is the base theme; the LH510 page is the
-home page (`templates/index.json`, layout `lh510`).
+Shopify sections for the LH500 hotel smart lock page, built from the Figma frames "Hotel door lh500 web"
+(desktop) and "Hotel door 500 mob" (mobile). Horizon 4.3.0 is the base theme.
+
+This one is a page, not the home page. It goes on the lh510 store next to the LH510 home page:
+`templates/page.lh500.json` with layout `lh500`. In the admin, create a page and pick the `page.lh500` template.
 
 ## Files
 
-- `sections/lh510-*.liquid` - one section per page block: header, hero, access, extensions, energy, software,
-  applications, pricing (also used for the energy saver prices), encoder, rfid, dimensions, products, why, footer
-- `snippets/lh510-assets.liquid` - loads the fonts, `lh510-base.css` and `lh510.js`; rendered at the top of every section
-- `snippets/lh510-buy-button.liquid` - Buy now / Add to cart button for a product
-- `snippets/lh510-image.liquid`, `snippets/lh510-stars.liquid` - image and rating helpers
-- `assets/lh510-*` - section CSS, JS and images
-- `layout/lh510.liquid` - layout for the page
-- `sections/header-group.json`, `sections/footer-group.json` - the LH510 header and footer on every page
+- `sections/lh500-*.liquid` - the page sections (header, hero, access, extensions, energy, software, applications,
+  pricing, encoder, rfid, dimensions, products, why, footer)
+- `snippets/lh500-*.liquid` - assets loader, buy button, image and star rating helpers
+- `assets/lh500-*` - css, js and images
+- `layout/lh500.liquid` - page layout without the theme header/footer
+- `templates/page.lh500.json` - the page
 
 ## Products
 
-The buttons buy or add these products (by handle), so create them on the store or pick others in the theme editor:
+The buttons use these product handles:
 
-- `lh510-hotel-smart-lock` - hero and pricing table
-- `lh400-hotel-smart-lock`, `lh500-hotel-smart-lock`, `lh550-hotel-smart-lock` - pricing table and the Products menu
+- `lh500-hotel-smart-lock` - hero and pricing table
+- `lh400-hotel-smart-lock`, `lh510-hotel-smart-lock`, `lh550-hotel-smart-lock` - pricing table and the Products menu
 - `energy-saver-lite`, `energy-saver-pro` - energy saver prices
 
 ## Upload
 
+Push only the LH500 files. Everything else in the store's theme belongs to the LH510 page, and a full push
+would delete it.
+
 ```bash
-shopify theme push --store <store>.myshopify.com --path . --unpublished
+shopify theme push --store lh510.myshopify.com --theme <theme id> --path . \
+  --only "assets/lh500*" --only "sections/lh500-*" --only "snippets/lh500-*" \
+  --only layout/lh500.liquid --only templates/page.lh500.json
 ```
