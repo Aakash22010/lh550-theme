@@ -96,6 +96,9 @@
   height: 100%;
   object-fit: cover;
 }
+.lh-energy .lh-energy__door-img--mobile {
+  display: none;
+}
 .lh-energy .lh-energy__door-card {
   width: 100%;
   flex: 1;
@@ -204,6 +207,13 @@
   .lh-energy .lh-energy__door-item {
     border-radius: calc(1.4 * var(--lh-u));
   }
+  /* phones get their own crops, the photos sit in different cells than on desktop */
+  .lh-energy .lh-energy__door-img--desktop {
+    display: none;
+  }
+  .lh-energy .lh-energy__door-img--mobile {
+    display: block;
+  }
   .lh-energy .lh-energy__door-item--1 {
     grid-column: 1 / 3;
     grid-row: 1;
@@ -238,6 +248,9 @@
   }
   .lh-energy .lh-energy__door-title .lh-line {
     white-space: nowrap;
+  }
+  .lh-energy .lh-energy__door-title .lh-highlight {
+    color: inherit; /* bold black on phones, blue is desktop only */
   }
   .lh-energy .lh-energy__software-img--desktop {
     display: none;
