@@ -47,14 +47,14 @@
   .lh-dimensions .lh-dimensions__title{ max-width: calc(30 * var(--lh-u)); margin: 0 auto calc(2.7 * var(--lh-u)); }
   /* centred on wider phones */
   .lh-dimensions .lh-dimensions__grid{ display: block; min-height: 0; width: calc(40.2 * var(--lh-u)); margin-inline: calc((100% - 40.2 * var(--lh-u)) / 2); }
-  .lh-dimensions .lh-dimensions__figure--mortise{ border: 0; margin-top: calc(-6.88 * var(--lh-u)); }
+  .lh-dimensions .lh-dimensions__figure--mortise{ border: 0; margin-top: calc(-7.28 * var(--lh-u)); }
   .lh-dimensions .lh-dimensions__figure--back{ margin-top: calc(1.44 * var(--lh-u)); }
   .lh-dimensions .lh-dimensions__figure--front .lh-dimensions__img{ margin: calc(0.32 * var(--lh-u)) 0 0 calc(4.12 * var(--lh-u)); }
   .lh-dimensions .lh-dimensions__figure--mortise .lh-dimensions__img{ margin: 0 0 0 calc(6.08 * var(--lh-u)); }
   .lh-dimensions .lh-dimensions__figure--back .lh-dimensions__img{ margin: calc(0.32 * var(--lh-u)) 0 0 calc(4.64 * var(--lh-u)); }
   .lh-dimensions .lh-dimensions__footnote{ display: none; }
   /* portrait banner on phones */
-  .lh-dimensions .lh-dimensions__banner{ width: calc(36.2 * var(--lh-u)); max-width: 100%; margin: calc(6.88 * var(--lh-u)) auto 0; border-radius: calc(3.6 * var(--lh-u)); }
+  .lh-dimensions .lh-dimensions__banner{ width: calc(36.2 * var(--lh-u)); max-width: 100%; margin: calc(6.48 * var(--lh-u)) auto 0; border-radius: calc(3.6 * var(--lh-u)); }
   .lh-dimensions .lh-dimensions__banner-img--d{ display: none; }
   .lh-dimensions .lh-dimensions__banner-img--m{ display: block; aspect-ratio: 452 / 735; }
 }
