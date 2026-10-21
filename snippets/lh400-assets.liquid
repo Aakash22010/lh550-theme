@@ -1,0 +1,4 @@
+{%- comment -%} fonts, base css and js. Every lh400 section renders this so it works on its own {%- endcomment -%}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500&family=Roboto:wght@400;500;600;700&display=swap">
+{{ 'lh400-base.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'lh400.js' | asset_url }}" defer></script>

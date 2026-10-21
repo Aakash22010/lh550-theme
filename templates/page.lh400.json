@@ -1,0 +1,1010 @@
+{
+  "layout": "lh400",
+  "sections": {
+    "header": {
+      "type": "lh400-header",
+      "settings": {
+        "menu": ""
+      }
+    },
+    "hero": {
+      "type": "lh400-hero",
+      "settings": {
+        "price_text": "₹3,990/-",
+        "compare_text": "₹8,500/-",
+        "product": "lh400-hotel-smart-lock"
+      }
+    },
+    "access": {
+      "type": "lh400-access",
+      "settings": {},
+      "blocks": {
+        "unlock_1": {
+          "type": "unlock",
+          "settings": {
+            "title": "Mobile Unlock",
+            "text": "Can unlock hotel door lock with Mobile app access.",
+            "icon": "bluetooth",
+            "active": true
+          }
+        },
+        "unlock_2": {
+          "type": "unlock",
+          "settings": {
+            "title": "RFID Unlock",
+            "text": "Can unlock hotel door lock with RFID card access.",
+            "icon": "rfid",
+            "fallback": "lh400-access-rfid.png",
+            "active": false
+          }
+        },
+        "unlock_3": {
+          "type": "unlock",
+          "settings": {
+            "title": "Manual Key Unlock",
+            "text": "Can unlock hotel door lock with manual key access.",
+            "icon": "key",
+            "fallback": "lh400-access-key.png",
+            "active": false
+          }
+        }
+      },
+      "block_order": [
+        "unlock_1",
+        "unlock_2",
+        "unlock_3"
+      ]
+    },
+    "extensions": {
+      "type": "lh400-extensions",
+      "settings": {},
+      "blocks": {
+        "extension_1": {
+          "type": "extension",
+          "settings": {
+            "title": "LAVNA Smart RFID Cards (Pack of 5)",
+            "fallback": "lh400-ext-rfid-cards.png",
+            "button_label": "Add to Cart",
+            "button_action": "add"
+          }
+        },
+        "extension_2": {
+          "type": "extension",
+          "settings": {
+            "title": "LAVNA Smart Energy Saver",
+            "fallback": "lh400-ext-energy-saver.png",
+            "button_label": "Add to Cart",
+            "button_action": "add"
+          }
+        },
+        "extension_3": {
+          "type": "extension",
+          "settings": {
+            "title": "LAVNA Digital Smart Encoder",
+            "fallback": "lh400-ext-encoder.png",
+            "button_label": "Add to Cart",
+            "button_action": "add"
+          }
+        },
+        "extension_4": {
+          "type": "extension",
+          "settings": {
+            "title": "LAVNA Smart Lift Controller",
+            "fallback": "lh400-ext-lift-controller.png",
+            "button_label": "Add to Cart",
+            "button_action": "add"
+          }
+        },
+        "extension_5": {
+          "type": "extension",
+          "settings": {
+            "title": "LAVNA Digital Smart Gateway",
+            "fallback": "lh400-ext-gateway.png",
+            "button_label": "Add to Cart",
+            "button_action": "add"
+          }
+        }
+      },
+      "block_order": [
+        "extension_1",
+        "extension_2",
+        "extension_3",
+        "extension_4",
+        "extension_5"
+      ]
+    },
+    "energy": {
+      "type": "lh400-energy",
+      "settings": {},
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "title": "Energy Saver Pro",
+            "fallback": "lh400-esaver-pro.png",
+            "text": "A valid RFID or key card is inserted.\nPower consumption recorded in Software\nBrief Power delay after card removal."
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "title": "Energy Saver Lite",
+            "fallback": "lh400-esaver-lite.png",
+            "text": "Any RFID Card can be inserted.\nSave Electricity when card not placed.\nInstant Power off after card removal."
+          }
+        }
+      },
+      "block_order": [
+        "feature_1",
+        "feature_2"
+      ]
+    },
+    "software": {
+      "type": "lh400-software",
+      "settings": {
+        "more_title": "What More You Can Do"
+      },
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "title": "Alarm Trigger",
+            "text": "If a door isn’t Completely locked, an alarm will activate after 60 seconds"
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "title": "Past Electricity Records",
+            "text": "Install our lock to enable access to detailed historical electricity usage data directly through our software."
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "title": "Past Unlocking Records",
+            "text": "Check past unlocking records of the lock and manage efficiently"
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "title": "Mobile App Tracking",
+            "text": "Connect and control access from your mobile using our app"
+          }
+        },
+        "capability_5": {
+          "type": "capability",
+          "settings": {
+            "text": "Check room status, vacant or occupied"
+          }
+        },
+        "capability_6": {
+          "type": "capability",
+          "settings": {
+            "text": "Check room service status"
+          }
+        },
+        "capability_7": {
+          "type": "capability",
+          "settings": {
+            "text": "Check customer checkout timings"
+          }
+        },
+        "capability_8": {
+          "type": "capability",
+          "settings": {
+            "text": "Check low battery status in the software"
+          }
+        },
+        "capability_9": {
+          "type": "capability",
+          "settings": {
+            "text": "Provide mobile app access to staff and guests"
+          }
+        },
+        "capability_10": {
+          "type": "capability",
+          "settings": {
+            "text": "Guests can check the details about the stay"
+          }
+        },
+        "capability_11": {
+          "type": "capability",
+          "settings": {
+            "text": "Guests can unlock with their mobile app"
+          }
+        },
+        "capability_12": {
+          "type": "capability",
+          "settings": {
+            "text": "Generate multiple cards like guest cards, manager card, housekeeping cards"
+          }
+        },
+        "capability_13": {
+          "type": "capability",
+          "settings": {
+            "text": "Check past Week Occupancy records & Room unlocking records"
+          }
+        }
+      },
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "capability_5",
+        "capability_6",
+        "capability_7",
+        "capability_8",
+        "capability_9",
+        "capability_10",
+        "capability_11",
+        "capability_12",
+        "capability_13"
+      ]
+    },
+    "applications": {
+      "type": "lh400-applications",
+      "settings": {},
+      "blocks": {
+        "app_1": {
+          "type": "app",
+          "settings": {
+            "title": "PG's",
+            "fallback": "lh400-app-pg.png"
+          }
+        },
+        "app_2": {
+          "type": "app",
+          "settings": {
+            "title": "Hospital Inventory Area",
+            "fallback": "lh400-app-hospital.png"
+          }
+        },
+        "app_3": {
+          "type": "app",
+          "settings": {
+            "title": "Document Room",
+            "fallback": "lh400-app-document-room.png"
+          }
+        },
+        "app_4": {
+          "type": "app",
+          "settings": {
+            "title": "Gym Private Area",
+            "fallback": "lh400-app-gym.png"
+          }
+        },
+        "app_5": {
+          "type": "app",
+          "settings": {
+            "title": "Bank Locker Room",
+            "fallback": "lh400-app-bank-locker.png"
+          }
+        },
+        "app_6": {
+          "type": "app",
+          "settings": {
+            "title": "Private Cabin Area",
+            "fallback": "lh400-app-cabin.png"
+          }
+        }
+      },
+      "block_order": [
+        "app_1",
+        "app_2",
+        "app_3",
+        "app_4",
+        "app_5",
+        "app_6"
+      ]
+    },
+    "pricing": {
+      "type": "lh400-pricing",
+      "settings": {},
+      "blocks": {
+        "product_1": {
+          "type": "product",
+          "settings": {
+            "name": "LH400",
+            "fallback": "lh400-price-lh400.png",
+            "discount": "-53%",
+            "price": "Rs. 3,990.00",
+            "compare_price": "Rs. 8,500.00",
+            "rating": 4.5,
+            "button_label": "Add to Cart",
+            "product": "lh400-hotel-smart-lock"
+          }
+        },
+        "product_2": {
+          "type": "product",
+          "settings": {
+            "name": "LH500",
+            "fallback": "lh400-price-lh500.png",
+            "discount": "-60%",
+            "price": "Rs. 5,185.00",
+            "compare_price": "Rs. 12,990.00",
+            "rating": 4.5,
+            "button_label": "Add to Cart",
+            "product": "lh500-hotel-smart-lock"
+          }
+        },
+        "product_3": {
+          "type": "product",
+          "settings": {
+            "name": "LH510",
+            "fallback": "lh400-price-lh510.png",
+            "discount": "-60%",
+            "price": "Rs. 5,200.00",
+            "compare_price": "Rs. 12,990.00",
+            "rating": 4.5,
+            "button_label": "Add to Cart",
+            "product": "lh510-hotel-smart-lock"
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "label": "Color",
+            "value_1": "Black",
+            "value_2": "Matte Satin",
+            "value_3": "Rose Gold",
+            "value_4": "Gold"
+          }
+        },
+        "feature_5": {
+          "type": "feature",
+          "settings": {
+            "label": "Manual Key",
+            "label_mobile": "Manual \nKey",
+            "value_1": "Yes, 2 Mechanical Keys",
+            "value_1_mobile": "Yes, 2 Manual Keys",
+            "value_2": "Yes, 2 Mechanical Keys",
+            "value_2_mobile": "Yes, 2 Manual Keys",
+            "value_3": "Yes, 2 Mechanical Keys",
+            "value_3_mobile": "Yes, 2 Manual Keys",
+            "value_4": "Yes, 2 Mechanical Keys",
+            "value_4_mobile": "Yes, 2 Manual Keys"
+          }
+        },
+        "feature_6": {
+          "type": "feature",
+          "settings": {
+            "label": "RFID Card",
+            "label_mobile": "RFID \nCard",
+            "value_1": "Yes, 2 Cards",
+            "value_2": "Yes, 2 Cards",
+            "value_3": "Yes, 2 Cards",
+            "value_4": "Yes, 2 Cards"
+          }
+        },
+        "feature_7": {
+          "type": "feature",
+          "settings": {
+            "label": "Battery Type",
+            "label_mobile": "Battery \nType",
+            "value_1": "4 Pcs * AA Alkaline",
+            "value_2": "4 Pcs * AA Alkaline",
+            "value_3": "4 Pcs * AA Alkaline",
+            "value_4": "4 Pcs * AA Alkaline"
+          }
+        },
+        "feature_8": {
+          "type": "feature",
+          "settings": {
+            "label": "Door Thickness",
+            "label_mobile": "Door \nThickness",
+            "value_1": "30 - 65mm",
+            "value_2": "35 - 65mm",
+            "value_3": "35 - 65mm",
+            "value_4": "35 - 65mm"
+          }
+        },
+        "feature_9": {
+          "type": "feature",
+          "settings": {
+            "label": "Security Alert",
+            "label_mobile": "Alert",
+            "value_1": "Room Locked feature(Not Available)",
+            "value_1_mobile": "Room Locked (Not Available)",
+            "value_2": "Room Locked feature",
+            "value_2_mobile": "Room Locked",
+            "value_3": "Room Locked feature",
+            "value_3_mobile": "Room Locked",
+            "value_4": "Room Locked feature",
+            "value_4_mobile": "Room Locked"
+          }
+        },
+        "feature_10": {
+          "type": "feature",
+          "settings": {
+            "label": "Warranty",
+            "value_1": "1 Year",
+            "value_2": "3 Year",
+            "value_3": "3 Year",
+            "value_4": "3 Year"
+          }
+        },
+        "feature_11": {
+          "type": "feature",
+          "settings": {
+            "label": "Material Used",
+            "value_1": "Zinc alloy, ABS and Stainless steel",
+            "value_2": "Zinc alloy, ABS and Stainless steel",
+            "value_3": "Zinc alloy, ABS and Stainless steel",
+            "value_4": "Zinc alloy, ABS and Stainless steel"
+          }
+        },
+        "product_4": {
+          "type": "product",
+          "settings": {
+            "name": "LH550",
+            "fallback": "lh400-price-lh550.png",
+            "discount": "-58%",
+            "price": "Rs. 5,450.00",
+            "compare_price": "Rs. 12,990.00",
+            "rating": 4.5,
+            "button_label": "Add to Cart",
+            "product": "lh550-hotel-smart-lock"
+          }
+        }
+      },
+      "block_order": [
+        "product_1",
+        "product_2",
+        "product_3",
+        "product_4",
+        "feature_4",
+        "feature_5",
+        "feature_6",
+        "feature_7",
+        "feature_8",
+        "feature_9",
+        "feature_10",
+        "feature_11"
+      ]
+    },
+    "encoder": {
+      "type": "lh400-encoder",
+      "settings": {},
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "group": "encoder",
+            "title": "Secure Access Control",
+            "text": "Encodes encrypted, time-limited RFID/magnetic cards for rooms, staff areas, and amenities."
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "group": "encoder",
+            "title": "PMS Integration",
+            "text": "Connects with hotel management software to program cards instantly during check-in or stay extension"
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "group": "encoder",
+            "title": "Security & Audit Logs",
+            "text": "Tracks card issuance, room access, and staff activity to prevent misuse or cloning."
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "group": "encoder",
+            "title": "Hardware Security",
+            "text": "Acts as a required security device for operating the hotel lock management system."
+          }
+        },
+        "feature_5": {
+          "type": "feature",
+          "settings": {
+            "group": "encoder",
+            "title": "Access Control & Revocation",
+            "text": "Quickly cancels lost cards and updates access permissions."
+          }
+        },
+        "feature_6": {
+          "type": "feature",
+          "settings": {
+            "group": "encoder",
+            "title": "High-Speed Encoding",
+            "text": "Supports fast, high-volume card issuance at busy front desks."
+          }
+        },
+        "feature_7": {
+          "type": "feature",
+          "settings": {
+            "group": "saver",
+            "title": "Key Card Power Activation",
+            "text": "Room power turns on only when a valid RFID or key card is inserted."
+          }
+        },
+        "feature_8": {
+          "type": "feature",
+          "settings": {
+            "group": "saver",
+            "title": "Smart Energy Management",
+            "text": "Automatically cuts power to non-essential devices when the guest leaves."
+          }
+        },
+        "feature_9": {
+          "type": "feature",
+          "settings": {
+            "group": "saver",
+            "title": "Occupancy Detection",
+            "text": "Uses sensors or smart readers to detect presence and prevent energy waste."
+          }
+        },
+        "feature_10": {
+          "type": "feature",
+          "settings": {
+            "group": "saver",
+            "title": "Safety & Fire Protection",
+            "text": "Shuts down high-risk electrical devices in unoccupied rooms."
+          }
+        },
+        "feature_11": {
+          "type": "feature",
+          "settings": {
+            "group": "saver",
+            "title": "BMS Integration",
+            "text": "Connects with Building Management Systems to automate lighting and temperature."
+          }
+        },
+        "feature_12": {
+          "type": "feature",
+          "settings": {
+            "group": "saver",
+            "title": "Delayed Power Off",
+            "text": "Provides a short delay before switching off power after card removal."
+          }
+        }
+      },
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "feature_5",
+        "feature_6",
+        "feature_7",
+        "feature_8",
+        "feature_9",
+        "feature_10",
+        "feature_11",
+        "feature_12"
+      ]
+    },
+    "energy-pricing": {
+      "type": "lh400-pricing",
+      "settings": {
+        "heading": "Energy Saver’s Price & Details",
+        "heading_mobile": "Energy Saver Price & Details",
+        "button_full": true,
+        "padding_top": 78,
+        "padding_top_mobile": 48
+      },
+      "blocks": {
+        "product_1": {
+          "type": "product",
+          "settings": {
+            "name": "Energy Saver Lite",
+            "fallback": "lh400-esaver-lite-photo.png",
+            "discount": "-53%",
+            "price": "Rs. 999.00",
+            "compare_price": "Rs. 8,500.00",
+            "rating": 4.5,
+            "button_label": "Add to Cart",
+            "product": "energy-saver-lite"
+          }
+        },
+        "product_2": {
+          "type": "product",
+          "settings": {
+            "name": "Energy Saver Pro",
+            "fallback": "lh400-esaver-pro-photo.png",
+            "discount": "-60%",
+            "price": "Rs. 1,299.00",
+            "compare_price": "Rs. 12,990.00",
+            "rating": 4.5,
+            "button_label": "Add to Cart",
+            "product": "energy-saver-pro"
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "label": "Card Powered",
+            "label_mobile": "Card\nPowered",
+            "value_1": "yes",
+            "value_2": "yes"
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "label": "Track Records",
+            "label_mobile": "Track\nRecords",
+            "value_1": "no",
+            "value_2": "yes"
+          }
+        },
+        "feature_5": {
+          "type": "feature",
+          "settings": {
+            "label": "Save’ s Energy",
+            "label_mobile": "Save’ s\nEnergy",
+            "value_1": "20%",
+            "value_2": "25%"
+          }
+        },
+        "feature_6": {
+          "type": "feature",
+          "settings": {
+            "label": "Card Activation",
+            "label_mobile": "Card\nActivation",
+            "value_1": "Runs with any RFID Card which is Hotel Specific",
+            "value_2": "Runs with Registered Room Only RFID Card"
+          }
+        },
+        "feature_7": {
+          "type": "feature",
+          "settings": {
+            "label": "App Compatible",
+            "label_mobile": "App\nCompatible",
+            "value_1": "no",
+            "value_2": "yes"
+          }
+        }
+      },
+      "block_order": [
+        "product_1",
+        "product_2",
+        "feature_3",
+        "feature_4",
+        "feature_5",
+        "feature_6",
+        "feature_7"
+      ]
+    },
+    "rfid": {
+      "type": "lh400-rfid",
+      "settings": {},
+      "blocks": {
+        "role_1": {
+          "type": "role",
+          "settings": {
+            "title": "Hotel\nManager RFID",
+            "text": "Provides managers with full access to all authorized areas, enabling easy supervision and complete control of hotel operations.",
+            "image_alt": "Manager tapping an RFID card on the LAVNA lock",
+            "fallback": "lh400-rfid-manager.png",
+            "focal_desktop": "50% 35%",
+            "focal_mobile": "50% 0%"
+          }
+        },
+        "role_2": {
+          "type": "role",
+          "settings": {
+            "title": "Guest\nSmart RFID",
+            "text": "Offers guests secure and convenient access to their assigned rooms and permitted amenities throughout \ntheir stay.",
+            "image_alt": "Guest tapping a smart RFID card on the LAVNA lock",
+            "fallback": "lh400-rfid-guest.png",
+            "focal_desktop": "50% 35%",
+            "focal_mobile": "50% 0%"
+          }
+        },
+        "role_3": {
+          "type": "role",
+          "settings": {
+            "title": "House\nKeeping RFID",
+            "text": "Allows housekeeping staff controlled entry to guest rooms and designated service areas during scheduled hours, ensuring efficient and timely maintenance.",
+            "image_alt": "Housekeeping staff tapping an RFID card on the LAVNA lock",
+            "fallback": "lh400-rfid-housekeeping.png",
+            "focal_desktop": "50% 35%",
+            "focal_mobile": "50% 0%"
+          }
+        }
+      },
+      "block_order": [
+        "role_1",
+        "role_2",
+        "role_3"
+      ]
+    },
+    "dimensions": {
+      "type": "lh400-dimensions",
+      "settings": {},
+      "blocks": {
+        "note_1": {
+          "type": "note",
+          "settings": {
+            "label": "Panel height",
+            "value": "26 cm"
+          }
+        },
+        "note_2": {
+          "type": "note",
+          "settings": {
+            "label": "Panel width",
+            "value": "7 cm"
+          }
+        },
+        "note_3": {
+          "type": "note",
+          "settings": {
+            "label": "Panel base",
+            "value": "7.6 cm"
+          }
+        },
+        "note_4": {
+          "type": "note",
+          "settings": {
+            "label": "Handle length",
+            "value": "14.73 cm"
+          }
+        },
+        "note_5": {
+          "type": "note",
+          "settings": {
+            "label": "Mortise height",
+            "value": "20.3 cm"
+          }
+        },
+        "note_6": {
+          "type": "note",
+          "settings": {
+            "label": "Mortise face",
+            "value": "2.5 cm"
+          }
+        },
+        "note_7": {
+          "type": "note",
+          "settings": {
+            "label": "Bolt throw",
+            "value": "9.2 cm"
+          }
+        },
+        "note_8": {
+          "type": "note",
+          "settings": {
+            "label": "RFID Card scanner",
+            "value": ""
+          }
+        },
+        "note_9": {
+          "type": "note",
+          "settings": {
+            "label": "Manual key area",
+            "value": ""
+          }
+        },
+        "note_10": {
+          "type": "note",
+          "settings": {
+            "label": "Battery area",
+            "value": ""
+          }
+        },
+        "note_11": {
+          "type": "note",
+          "settings": {
+            "label": "DND knob",
+            "value": ""
+          }
+        },
+        "note_12": {
+          "type": "note",
+          "settings": {
+            "label": "304 ultra strong steel bolt",
+            "value": ""
+          }
+        }
+      },
+      "block_order": [
+        "note_1",
+        "note_2",
+        "note_3",
+        "note_4",
+        "note_5",
+        "note_6",
+        "note_7",
+        "note_8",
+        "note_9",
+        "note_10",
+        "note_11",
+        "note_12"
+      ]
+    },
+    "products": {
+      "type": "lh400-products",
+      "settings": {},
+      "blocks": {
+        "product_1": {
+          "type": "product",
+          "settings": {
+            "title": "LAVNA Digital Padlock LP45",
+            "fallback": "lh400-product-padlock.png"
+          }
+        },
+        "product_2": {
+          "type": "product",
+          "settings": {
+            "title": "LAVNA Digital Cabinet Lock LS10 Black",
+            "fallback": "lh400-product-ls10.png"
+          }
+        },
+        "product_3": {
+          "type": "product",
+          "settings": {
+            "title": "LAVNA Smart Safe Locker 58L",
+            "fallback": "lh400-product-safe.png"
+          }
+        },
+        "product_4": {
+          "type": "product",
+          "settings": {
+            "title": "LAVNA Digital Smart Gateway",
+            "fallback": "lh400-product-gateway.png"
+          }
+        },
+        "product_5": {
+          "type": "product",
+          "settings": {
+            "title": "LAVNA Smart Lift Controller",
+            "fallback": "lh400-product-lift.png"
+          }
+        },
+        "product_6": {
+          "type": "product",
+          "settings": {
+            "title": "LAVNA Digital Cabinet Lock LS11 Black",
+            "fallback": "lh400-product-ls11.png"
+          }
+        }
+      },
+      "block_order": [
+        "product_1",
+        "product_2",
+        "product_3",
+        "product_4",
+        "product_5",
+        "product_6"
+      ]
+    },
+    "why": {
+      "type": "lh400-why",
+      "settings": {},
+      "blocks": {
+        "reason_1": {
+          "type": "reason",
+          "settings": {
+            "text": "India’s Only Niche Brand in the Smart Lock Industry",
+            "fallback": "lh400-why-best.png",
+            "icon_alt": "Award badge icon"
+          }
+        },
+        "reason_2": {
+          "type": "reason",
+          "settings": {
+            "text": "Fastest Delivery Across India, Right to Your Doorstep",
+            "fallback": "lh400-why-fast.png",
+            "icon_alt": "Fast delivery icon"
+          }
+        },
+        "reason_3": {
+          "type": "reason",
+          "settings": {
+            "text": "Installation & Support Across 25+ Cities",
+            "fallback": "lh400-why-tools.png",
+            "icon_alt": "Installation tools icon"
+          }
+        },
+        "reason_4": {
+          "type": "reason",
+          "settings": {
+            "text": "Trusted by Over 1.5 Million Satisfied Customers",
+            "fallback": "lh400-why-like.png",
+            "icon_alt": "Thumbs up icon"
+          }
+        }
+      },
+      "block_order": [
+        "reason_1",
+        "reason_2",
+        "reason_4",
+        "reason_3"
+      ]
+    },
+    "footer": {
+      "type": "lh400-footer",
+      "settings": {},
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "name": "Visa",
+            "fallback": "lh400-pay-visa.png",
+            "width": 100,
+            "width_mobile": 64
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "name": "Mastercard",
+            "fallback": "lh400-pay-mastercard.png",
+            "width": 100,
+            "width_mobile": 54
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "name": "RuPay",
+            "fallback": "lh400-pay-rupay.png",
+            "width": 86,
+            "width_mobile": 68
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "name": "Paytm",
+            "fallback": "lh400-pay-paytm.png",
+            "width": 102,
+            "width_mobile": 66
+          }
+        },
+        "logo_5": {
+          "type": "logo",
+          "settings": {
+            "name": "Google Pay",
+            "fallback": "lh400-pay-gpay.png",
+            "width": 100,
+            "width_mobile": 66
+          }
+        },
+        "logo_6": {
+          "type": "logo",
+          "settings": {
+            "name": "PhonePe",
+            "fallback": "lh400-pay-phonepe.png",
+            "width": 76,
+            "width_mobile": 50
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4",
+        "logo_5",
+        "logo_6"
+      ]
+    }
+  },
+  "order": [
+    "header",
+    "hero",
+    "access",
+    "extensions",
+    "energy",
+    "software",
+    "applications",
+    "pricing",
+    "encoder",
+    "energy-pricing",
+    "rfid",
+    "dimensions",
+    "products",
+    "why",
+    "footer"
+  ]
+}

@@ -1,0 +1,296 @@
+{%- comment -%} LH400 encoder + energy saver features, each feature block picks its group {%- endcomment -%}
+{% render 'lh400-assets' %}
+{{ 'lh400-encoder.css' | asset_url | stylesheet_tag }}
+
+{%- assign s = section.settings -%}
+<section class="lh lh-section lh-encoder" style="--pt:{{ s.padding_top }};--ptm:{{ s.padding_top_mobile }}">
+  <div class="lh-container">
+
+    {% # encoder %}
+    <div class="lh-encoder__group">
+      {% # desktop banner is one image, mobile has live text %}
+      <figure class="lh-encoder__banner">
+        {%- render 'lh400-image', image: s.encoder_banner, fallback: 'lh400-enc-banner.png', alt: s.encoder_banner_alt, class: 'lh-encoder__banner-img', sizes: '(min-width: 1440px) 1344px, 94vw', width: 3000, height: 800 -%}
+      </figure>
+      <div class="lh-encoder__mbanner">
+        <div class="lh-encoder__mbanner-media">
+          {%- render 'lh400-image', image: s.encoder_banner_mobile, fallback: 'lh400-enc-banner-mobile.jpg', alt: s.encoder_banner_alt, class: 'lh-encoder__mbanner-img', sizes: '94vw', width: 1064, height: 800 -%}
+        </div>
+        <div class="lh-encoder__mbanner-body">
+          {%- if s.banner_title != blank -%}
+            <h2 class="lh-encoder__mbanner-title">{{ s.banner_title | escape }}</h2>
+          {%- endif -%}
+          {%- assign points = s.banner_points | newline_to_br | split: '<br />' -%}
+          <ul class="lh-encoder__mbanner-list">
+            {%- for point in points -%}
+              {%- assign point = point | strip -%}
+              {%- if point != blank -%}<li>{{ point | escape }}</li>{%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+      <h2 class="lh-encoder__title">
+        {%- if s.encoder_title_mobile != blank -%}
+          <span class="lh-encoder__d">{{ s.encoder_title | escape }}</span><span class="lh-encoder__m">{{ s.encoder_title_mobile | escape }}</span>
+        {%- else -%}
+          {{ s.encoder_title | escape }}
+        {%- endif -%}
+      </h2>
+      <div class="lh-encoder__row">
+        <figure class="lh-encoder__thumb">
+          {%- render 'lh400-image', image: s.encoder_image, fallback: 'lh400-enc-encoder.png', alt: s.encoder_alt, class: 'lh-encoder__thumb-img', sizes: '196px', width: 575, height: 685 -%}
+        </figure>
+        <ul class="lh-encoder__grid" data-lh-marquee>
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'feature' and block.settings.group == 'encoder' -%}
+              <li class="lh-encoder__card" {{ block.shopify_attributes }}>
+                <h3 class="lh-encoder__card-title">{{ block.settings.title | escape }}</h3>
+                <p class="lh-encoder__card-text">{{ block.settings.text | escape }}</p>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+
+    {% # energy saver %}
+    <div class="lh-encoder__group">
+      <h2 class="lh-encoder__title">{{ s.saver_title | escape }}</h2>
+      <div class="lh-encoder__row">
+        <figure class="lh-encoder__thumb">
+          {%- render 'lh400-image', image: s.saver_image, fallback: 'lh400-enc-saver.png', alt: s.saver_alt, class: 'lh-encoder__thumb-img', sizes: '196px', width: 4096, height: 2732 -%}
+        </figure>
+        <ul class="lh-encoder__grid" data-lh-marquee>
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'feature' and block.settings.group == 'saver' -%}
+              <li class="lh-encoder__card" {{ block.shopify_attributes }}>
+                <h3 class="lh-encoder__card-title">{{ block.settings.title | escape }}</h3>
+                <p class="lh-encoder__card-text">{{ block.settings.text | escape }}</p>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // desktop: endless marquee like on lavnalocks.com, the cards are cloned so it loops cleanly.
+  // mobile, reduced motion and no JS keep the static list
+  (function () {
+    var desktop = window.matchMedia('(min-width: 900px)');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var SPEED = 68; // px per second, same pace as the live site
+
+    function setup(list) {
+      if (list.hasAttribute('data-lh-marquee-ready')) return;
+      list.setAttribute('data-lh-marquee-ready', '');
+      var originals = Array.prototype.slice.call(list.children);
+      var timer = null;
+
+      function clear() {
+        list.classList.remove('is-marquee');
+        Array.prototype.forEach.call(list.querySelectorAll('[data-lh-clone]'), function (c) { c.remove(); });
+      }
+      function build() {
+        clear();
+        if (!desktop.matches || reduce.matches || !originals.length) return;
+        var gap = parseFloat(getComputedStyle(list).columnGap) || 0;
+        var shift = originals.length * (originals[0].getBoundingClientRect().width + gap);
+        if (!shift) return;
+        // enough copies to keep the row full while the first set slides out
+        var copies = Math.max(1, Math.ceil(list.clientWidth / shift));
+        for (var k = 0; k < copies; k++) {
+          originals.forEach(function (li) {
+            var c = li.cloneNode(true);
+            c.setAttribute('data-lh-clone', '');
+            c.setAttribute('aria-hidden', 'true');
+            Array.prototype.slice.call(c.attributes).forEach(function (a) { if (a.name.indexOf('data-shopify') === 0) c.removeAttribute(a.name); });
+            list.appendChild(c);
+          });
+        }
+        list.style.setProperty('--marquee-shift', shift + 'px');
+        list.style.setProperty('--marquee-dur', (shift / SPEED).toFixed(2) + 's');
+        list.scrollLeft = 0;
+        list.classList.add('is-marquee');
+      }
+      function queue() { clearTimeout(timer); timer = setTimeout(build, 200); }
+
+      window.addEventListener('resize', queue);
+      if (desktop.addEventListener) { desktop.addEventListener('change', build); reduce.addEventListener('change', build); }
+      build();
+    }
+
+    function init() { Array.prototype.forEach.call(document.querySelectorAll('[data-lh-marquee]'), setup); }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+    document.addEventListener('shopify:section:load', init);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "LH400 encoder",
+  "tag": "div",
+  "class": "lh400-encoder-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Encoder group"
+    },
+    {
+      "type": "image_picker",
+      "id": "encoder_banner",
+      "label": "Encoder banner",
+      "info": "About 1344:358. Leave empty to use the encoder and software banner from the design."
+    },
+    {
+      "type": "text",
+      "id": "encoder_banner_alt",
+      "label": "Encoder banner alt text",
+      "default": "Hotel lock programming encoder and management software"
+    },
+    {
+      "type": "image_picker",
+      "id": "encoder_banner_mobile",
+      "label": "Encoder banner photo on mobile",
+      "info": "About 4:3, shown above the text below. Leave empty to use the reception photo from the design."
+    },
+    {
+      "type": "text",
+      "id": "banner_title",
+      "label": "Banner title on mobile",
+      "default": "Software-Connected Encoder"
+    },
+    {
+      "type": "textarea",
+      "id": "banner_points",
+      "label": "Banner points on mobile",
+      "info": "One point per line.",
+      "default": "Configure Hotel RFID cards from anywhere anytime.\nCheck your room status, vacant or engaged.\nCheck Past Unlocking Records of your guests."
+    },
+    {
+      "type": "text",
+      "id": "encoder_title",
+      "label": "Encoder heading",
+      "default": "Hotel Lock Programming Encoder Starting @12,990"
+    },
+    {
+      "type": "text",
+      "id": "encoder_title_mobile",
+      "label": "Encoder heading on mobile",
+      "default": "Hotel Lock Encoder Starting @12,990",
+      "info": "Leave empty to use the heading above."
+    },
+    {
+      "type": "image_picker",
+      "id": "encoder_image",
+      "label": "Encoder product photo",
+      "info": "About 1:1. Leave empty to use the encoder photo from the design."
+    },
+    {
+      "type": "text",
+      "id": "encoder_alt",
+      "label": "Encoder photo alt text",
+      "default": "LAVNA digital smart encoder"
+    },
+    {
+      "type": "header",
+      "content": "Energy saver group"
+    },
+    {
+      "type": "text",
+      "id": "saver_title",
+      "label": "Energy saver heading",
+      "default": "Energy Saver Switch Starting @999"
+    },
+    {
+      "type": "image_picker",
+      "id": "saver_image",
+      "label": "Energy saver product photo",
+      "info": "About 1:1. Leave empty to use the energy saver photo from the design."
+    },
+    {
+      "type": "text",
+      "id": "saver_alt",
+      "label": "Energy saver photo alt text",
+      "default": "LAVNA smart energy saver"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top spacing (desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top spacing (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "select",
+          "id": "group",
+          "label": "Group",
+          "options": [
+            { "value": "encoder", "label": "Encoder" },
+            { "value": "saver", "label": "Energy saver" }
+          ],
+          "default": "encoder"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Describe the feature"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "LH400 encoder",
+      "blocks": [
+        { "type": "feature", "settings": { "group": "encoder", "title": "Secure Access Control", "text": "Encodes encrypted, time-limited RFID/magnetic cards for rooms, staff areas, and amenities." } },
+        { "type": "feature", "settings": { "group": "encoder", "title": "PMS Integration", "text": "Connects with hotel management software to program cards instantly during check-in or stay extension" } },
+        { "type": "feature", "settings": { "group": "encoder", "title": "Security & Audit Logs", "text": "Tracks card issuance, room access, and staff activity to prevent misuse or cloning." } },
+        { "type": "feature", "settings": { "group": "encoder", "title": "Hardware Security", "text": "Acts as a required security device for operating the hotel lock management system." } },
+        { "type": "feature", "settings": { "group": "encoder", "title": "Access Control & Revocation", "text": "Quickly cancels lost cards and updates access permissions." } },
+        { "type": "feature", "settings": { "group": "encoder", "title": "High-Speed Encoding", "text": "Supports fast, high-volume card issuance at busy front desks." } },
+        { "type": "feature", "settings": { "group": "saver", "title": "Key Card Power Activation", "text": "Room power turns on only when a valid RFID or key card is inserted." } },
+        { "type": "feature", "settings": { "group": "saver", "title": "Smart Energy Management", "text": "Automatically cuts power to non-essential devices when the guest leaves." } },
+        { "type": "feature", "settings": { "group": "saver", "title": "Occupancy Detection", "text": "Uses sensors or smart readers to detect presence and prevent energy waste." } },
+        { "type": "feature", "settings": { "group": "saver", "title": "Safety & Fire Protection", "text": "Shuts down high-risk electrical devices in unoccupied rooms." } },
+        { "type": "feature", "settings": { "group": "saver", "title": "BMS Integration", "text": "Connects with Building Management Systems to automate lighting and temperature." } },
+        { "type": "feature", "settings": { "group": "saver", "title": "Delayed Power Off", "text": "Provides a short delay before switching off power after card removal." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
